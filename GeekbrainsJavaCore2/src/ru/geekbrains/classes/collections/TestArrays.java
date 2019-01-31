@@ -24,7 +24,21 @@ public class TestArrays {
             System.out.println(str+", количество повторений: "+n);
 
         }
-
+        Contact contact1 = new Contact("Миша");
+        contact1.addPhone("2-68-98");
+        contact1.addPhone("24-56-89");
+        contact1.addPhone("147-54-89");
+        Contact contact2 = new Contact("Маша");
+        contact2.addPhone("234-45-67");
+        contact2.addPhone("147-56-30");
+        PhoneBook phoneBook =new PhoneBook();
+        phoneBook.addContact(contact1);
+        phoneBook.addContact(contact2);
+        phoneBook.showAllContacts();
+        phoneBook.getContact("Петя");
+        phoneBook.getContact("Миша");
+        phoneBook.getContact("Маша");
+        phoneBook.getContact("Люба");
 
 
     }

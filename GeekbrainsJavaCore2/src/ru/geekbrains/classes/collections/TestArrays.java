@@ -31,9 +31,12 @@ public class TestArrays {
         Contact contact2 = new Contact("Маша");
         contact2.addPhone("234-45-67");
         contact2.addPhone("147-56-30");
+        Contact contact3 = new Contact("Миша");
+        contact3.addPhone("234-11-11");
         PhoneBook phoneBook =new PhoneBook();
         phoneBook.addContact(contact1);
         phoneBook.addContact(contact2);
+        phoneBook.addContact(contact3);
         phoneBook.showAllContacts();
         phoneBook.getContact("Петя");
         phoneBook.getContact("Миша");

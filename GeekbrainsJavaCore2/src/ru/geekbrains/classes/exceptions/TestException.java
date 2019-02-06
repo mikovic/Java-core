@@ -14,9 +14,9 @@ public class TestException {
         try {
             processingArray(array, 4);
         } catch (MyArraySizeException e) {
-            e.getExceptionMsg();
+            e.printStackTrace();
         } catch (MyArrayDataException e) {
-            e.getExceptionMsg();
+            e.printStackTrace();
         }
         String[][] array1 = {
                 {"4", "10", "15", "25"},
@@ -29,9 +29,9 @@ public class TestException {
         try {
             processingArray(array1, 4);
         } catch (MyArraySizeException e) {
-            e.getExceptionMsg();
+            e.printStackTrace();
         } catch (MyArrayDataException e) {
-            e.getExceptionMsg();
+            e.printStackTrace();
         }
         String[][] array2 = {
                 {"4", "10", "15", "25"},
@@ -44,9 +44,9 @@ public class TestException {
         try {
             processingArray(array2, 4);
         } catch (MyArraySizeException e) {
-            e.getExceptionMsg();
+            e.printStackTrace();
         } catch (MyArrayDataException e) {
-            e.getExceptionMsg();
+            e.printStackTrace();
         }
 
     }
@@ -63,7 +63,7 @@ public class TestException {
                 try {
                     sum = sum + Integer.parseInt(array[i][j]);
                 } catch (Exception e) {
-                    throw new MyArrayDataException(i, j);
+                    throw new MyArrayDataException(i, j, array[i][j]);
                 }
 
             }

@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="54dddda5-3c3a-47b6-b37c-307ae7eaba61" name="Default Changelist" comment="Переделка ДЗ№2 Без обработки пользователского ввода">
+    <list default="true" id="54dddda5-3c3a-47b6-b37c-307ae7eaba61" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/geekbrains/classes/exceptions/MyArrayDataException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/geekbrains/classes/exceptions/MyArrayDataException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/geekbrains/classes/exceptions/MyArraySizeException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/geekbrains/classes/exceptions/MyArraySizeException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/geekbrains/classes/exceptions/TestException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/geekbrains/classes/exceptions/TestException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/geekbrains/classes/swinglesson/MyWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/geekbrains/classes/swinglesson/MyWindow.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -48,14 +46,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ru/geekbrains/classes/swinglesson/MyWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="37">
-              <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="51">
+              <caret line="3" column="18" lean-forward="true" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -64,7 +59,7 @@
         <entry file="file://$PROJECT_DIR$/src/ru/geekbrains/classes/swinglesson/TestSwing.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="85">
-              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+              <caret line="5" selection-start-line="5" selection-end-line="5" />
             </state>
           </provider>
         </entry>
@@ -82,11 +77,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ru/geekbrains/classes/exceptions/TestException.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="62" column="21" lean-forward="true" selection-start-line="62" selection-start-column="21" selection-end-line="62" selection-end-column="21" />
+            <state relative-caret-position="476">
+              <caret line="67" selection-start-line="67" selection-end-line="67" />
             </state>
           </provider>
         </entry>
@@ -145,6 +140,19 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <excluded-from-favorite>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$/.." source="master" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </excluded-from-favorite>
   </component>
   <component name="GithubProjectSettings">
     <option name="CREATE_PULL_REQUEST_DEFAULT_BRANCH" value="master" />
@@ -175,16 +183,16 @@
         <option value="$PROJECT_DIR$/src/ru/geekbrains/classes/collections/TestArrays.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/ru/geekbrains/classes/swinglesson/TestSwing.java" />
-        <option value="$PROJECT_DIR$/src/ru/geekbrains/classes/swinglesson/MyWindow.java" />
         <option value="$PROJECT_DIR$/src/ru/geekbrains/classes/exceptions/MyArraySizeException.java" />
         <option value="$PROJECT_DIR$/src/ru/geekbrains/classes/exceptions/MyArrayDataException.java" />
         <option value="$PROJECT_DIR$/src/ru/geekbrains/classes/exceptions/TestException.java" />
+        <option value="$PROJECT_DIR$/src/ru/geekbrains/classes/swinglesson/MyWindow.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="7" />
-    <option name="y" value="23" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
     <option name="width" value="1094" />
     <option name="height" value="788" />
   </component>
@@ -242,13 +250,6 @@
               <item name="classes" type="462c0819:PsiDirectoryNode" />
               <item name="obstacles" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="GeekbrainsJavaCore2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GeekbrainsJavaCore2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-              <item name="swinglesson" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -258,7 +259,8 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549358169694" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549438924136" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../hellogit/HelloGit" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -272,7 +274,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.TestException">
+  <component name="RunManager" selected="Application.TestSwing">
     <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ru.geekbrains.classes.Application" />
       <module name="GeekbrainsJavaCore2" />
@@ -321,8 +323,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.TestException" />
         <item itemvalue="Application.TestSwing" />
+        <item itemvalue="Application.TestException" />
         <item itemvalue="Application.Application" />
       </list>
     </recent_temporary>
@@ -366,7 +368,14 @@
       <option name="project" value="LOCAL" />
       <updated>1549356028669</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Переделка ДЗ№2 Без обработки пользователского ввода">
+      <created>1549358197967</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1549358197967</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TodoView">
@@ -382,7 +391,7 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15279879" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15279879" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -391,7 +400,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.24509804" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.24509804" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39869282" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -484,7 +493,8 @@
     <MESSAGE value="Добавил Exception" />
     <MESSAGE value="ДЗ№3" />
     <MESSAGE value="ДЗ№4" />
-    <option name="LAST_COMMIT_MESSAGE" value="ДЗ№4" />
+    <MESSAGE value="Переделка ДЗ№2 Без обработки пользователского ввода" />
+    <option name="LAST_COMMIT_MESSAGE" value="Переделка ДЗ№2 Без обработки пользователского ввода" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/ru/geekbrains/classes/Ф.java" />
@@ -624,17 +634,7 @@
     <entry file="file://$PROJECT_DIR$/src/ru/geekbrains/classes/swinglesson/TestSwing.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/geekbrains/classes/swinglesson/MyWindow.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="37">
-          <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
         </state>
       </provider>
     </entry>
@@ -674,8 +674,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/geekbrains/classes/exceptions/TestException.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="62" column="21" lean-forward="true" selection-start-line="62" selection-start-column="21" selection-end-line="62" selection-end-column="21" />
+        <state relative-caret-position="476">
+          <caret line="67" selection-start-line="67" selection-end-line="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/geekbrains/classes/swinglesson/MyWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="18" lean-forward="true" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
         </state>
       </provider>
     </entry>

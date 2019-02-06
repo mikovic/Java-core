@@ -23,6 +23,7 @@ public class MyWindow extends JFrame {
         panel.add(jTextField);
         JButton jButton = new JButton("SEND");
         panel.add(jButton);
+        jTextField.requestFocus();
         jButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -37,6 +38,8 @@ public class MyWindow extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 listModel.add(listModel.size(),jTextField.getText().trim());
                 jTextField.setText("");
+
+
             }
         });
         setVisible(true);

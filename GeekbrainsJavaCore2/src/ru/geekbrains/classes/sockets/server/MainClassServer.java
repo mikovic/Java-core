@@ -19,17 +19,8 @@ public class MainClassServer {
             System.out.println("Сервер запущен, ожидаем подключения...");
             socket = serv.accept();
             System.out.println("Клиент подключился");
+            new Connect(socket);
 
-            DataInputStream in = new DataInputStream(socket.getInputStream());
-            DataOutputStream out = new DataOutputStream(socket.getOutputStream());
-            while (true) {
-                String userName = in.readUTF();
-                if (userName.equals("end")) break;
-                out.writeUTF("Сервер:" + userName);
-                String str = in.readUTF();
-                out.writeUTF("Эхо: " + str);
-                out.flush();
-            }
         } catch (IOException e) {
             System.out.println("Ошибка инициализации сервера");
         } finally {

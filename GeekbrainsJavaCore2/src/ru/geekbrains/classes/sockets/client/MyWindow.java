@@ -67,8 +67,9 @@ public class MyWindow extends JFrame implements MessageSender {
             @Override
             public void windowClosing(WindowEvent e) {
                 super.windowClosing(e);
-                    client.sendMsg(new Message(userName, "end"));
+                client.sendMsg(new Message(userName, "end"));
                 try {
+
                     client.close();
                 } catch (IOException e1) {
                     e1.printStackTrace();

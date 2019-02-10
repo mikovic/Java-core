@@ -1,11 +1,12 @@
 package ru.geekbrains.classes.sockets.server;
 
+import java.io.Closeable;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
-public class Connect implements Runnable {
+public class Connect implements Runnable, Closeable {
 
     Socket socket;
     Thread thread;
@@ -17,6 +18,7 @@ public class Connect implements Runnable {
     }
     @Override
     public void run() {
+        System.out.println("Поток запущен");
         DataInputStream in = null;
         DataOutputStream out = null;
         try {
@@ -24,16 +26,24 @@ public class Connect implements Runnable {
             out = new DataOutputStream(socket.getOutputStream());
             while (true) {
                 String userName = in.readUTF();
-                if (userName.equals("end")) break;
+                String msg = in.readUTF();
+                if (msg.equals("end")) break;
                 out.writeUTF("Сервер:" + userName);
-                String str = in.readUTF();
-                out.writeUTF("Эхо: " + str);
+                out.writeUTF("Эхо: " + msg);
                 out.flush();
+
             }
+
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Поток прерван ");
+
         }
 
 
+    }
+
+    @Override
+    public void close() throws IOException {
+        socket.close();
     }
 }

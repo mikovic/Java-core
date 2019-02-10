@@ -35,7 +35,6 @@ public class Client implements Closeable {
                 try {
                     while (true) {
 
-
                             String userName = in.readUTF();
                             String msg = in.readUTF();
                             if (msg.equalsIgnoreCase("end session")) break;

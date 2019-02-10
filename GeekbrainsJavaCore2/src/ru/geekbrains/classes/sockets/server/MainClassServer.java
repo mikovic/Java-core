@@ -12,25 +12,23 @@ public class MainClassServer {
     public static void main(String[] args) {
 
         ServerSocket serv = null;
-        Socket sock = null;
+        Socket socket = null;
 
         try {
             serv = new ServerSocket(8189);
             System.out.println("Сервер запущен, ожидаем подключения...");
-            sock = serv.accept();
-
-
+            socket = serv.accept();
             System.out.println("Клиент подключился");
 
-            Scanner sc = new Scanner(sock.getInputStream());
-            PrintWriter pw = new PrintWriter(sock.getOutputStream());
+            DataInputStream in = new DataInputStream(socket.getInputStream());
+            DataOutputStream out = new DataOutputStream(socket.getOutputStream());
             while (true) {
-                String str = sc.nextLine();
-                pw.println("Сервер отвечает клиенту " + str);
-                str = sc.nextLine();
-                if (str.equals("end")) break;
-                pw.println("Эхо: " + str);
-                pw.flush();
+                String userName = in.readUTF();
+                if (userName.equals("end")) break;
+                out.writeUTF("Сервер:" + userName);
+                String str = in.readUTF();
+                out.writeUTF("Эхо: " + str);
+                out.flush();
             }
         } catch (IOException e) {
             System.out.println("Ошибка инициализации сервера");

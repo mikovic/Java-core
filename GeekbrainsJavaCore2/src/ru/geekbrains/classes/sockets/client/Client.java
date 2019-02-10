@@ -12,8 +12,8 @@ public class Client implements Closeable {
     private final String SERVER_ADDR = "localhost";
     private final int SERVER_PORT = 8189;
     private Socket sock;
-    private Scanner in;
-    private PrintWriter out;
+    private DataInputStream in;
+    private  DataOutputStream out;
     private final MessageSender messageSender;
 
     Thread t;
@@ -24,8 +24,8 @@ public class Client implements Closeable {
 
         try {
             sock = new Socket(SERVER_ADDR, SERVER_PORT);
-            in = new Scanner(new DataInputStream(sock.getInputStream()));
-            out = new PrintWriter(new DataOutputStream(sock.getOutputStream()));
+            in = new DataInputStream(sock.getInputStream());
+            out = new DataOutputStream(sock.getOutputStream());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -34,12 +34,13 @@ public class Client implements Closeable {
             public void run() {
                 try {
                     while (true) {
-                        if (in.hasNext()) {
-                            String userName = in.nextLine();
-                            String msg = in.nextLine();
+
+
+                            String userName = in.readUTF();
+                            String msg = in.readUTF();
                             if (msg.equalsIgnoreCase("end session")) break;
                             messageSender.submitMessage(userName, msg);
-                        }
+
                     }
                 } catch (Exception e) {
                 }
@@ -47,10 +48,22 @@ public class Client implements Closeable {
         });
         t.start();
     }
-    public void sendMsg( Message message){
-        out.println(message.getUserName());
-        out.println(message.getMessage());
-        out.flush();
+    public void sendMsg( Message message)  {
+        try {
+            out.writeUTF(message.getUserName());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            out.writeUTF(message.getMessage());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            out.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 

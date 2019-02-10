@@ -8,29 +8,30 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
 
+
 public class MainClassServer {
     public static void main(String[] args) {
 
         ServerSocket serv = null;
-        Socket sock = null;
+        Socket socket = null;
 
         try {
             serv = new ServerSocket(8189);
             System.out.println("Сервер запущен, ожидаем подключения...");
-            sock = serv.accept();
+            socket = serv.accept();
 
 
             System.out.println("Клиент подключился");
+            DataInputStream input = new DataInputStream(socket.getInputStream());
+           DataOutputStream output = new DataOutputStream(socket.getOutputStream());
 
-            Scanner sc = new Scanner(sock.getInputStream());
-            PrintWriter pw = new PrintWriter(sock.getOutputStream());
             while (true) {
-                String str = sc.nextLine();
-                pw.println("Сервер отвечает клиенту " + str);
-                str = sc.nextLine();
-                if (str.equals("end")) break;
-                pw.println("Эхо: " + str);
-                pw.flush();
+                String userName = input.readUTF();
+                String msg = input.readUTF();
+                if (msg.equals("end")) break;
+                output.writeUTF("Сервер клиенту "+userName);
+                output.writeUTF("Эхо: " + msg);
+                output.flush();
             }
         } catch (IOException e) {
             System.out.println("Ошибка инициализации сервера");

@@ -14,6 +14,7 @@ public class Client implements Closeable {
     private Socket sock;
     private DataInputStream in;
     private  DataOutputStream out;
+    private Scanner scanner;
     private final MessageSender messageSender;
 
     Thread t;
@@ -26,6 +27,8 @@ public class Client implements Closeable {
             sock = new Socket(SERVER_ADDR, SERVER_PORT);
             in = new DataInputStream(sock.getInputStream());
             out = new DataOutputStream(sock.getOutputStream());
+            scanner = new Scanner(System.in);
+            System.out.println("Введите сообщение: ");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -34,11 +37,12 @@ public class Client implements Closeable {
             public void run() {
                 try {
                     while (true) {
-
                             String userName = in.readUTF();
                             String msg = in.readUTF();
                             if (msg.equalsIgnoreCase("end session")) break;
                             messageSender.submitMessage(userName, msg);
+
+
 
                     }
                 } catch (Exception e) {

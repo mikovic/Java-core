@@ -27,10 +27,21 @@ public class MyWindow extends JFrame implements MessageSender {
     private PrintWriter out;
     Client client;
     Message message;
+    String userName;
+    boolean flag = false;
 
-    public MyWindow(String userName) {
+    public MyWindow() {
 
         setBounds(600, 300, 500, 500);
+       Scanner sc = new Scanner(System.in);
+        System.out.println("Введите имя");
+        while (!flag){
+            userName = sc.nextLine();
+            if(userName != null) {
+                flag = true;
+                sc = null;
+            }
+        }
         setTitle("Client "+userName);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         jta = new JTextArea();

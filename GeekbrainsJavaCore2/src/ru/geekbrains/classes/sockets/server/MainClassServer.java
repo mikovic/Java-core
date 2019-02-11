@@ -6,32 +6,41 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MainClassServer {
     public static void main(String[] args) {
+        try (ServerSocket serverSocket = new ServerSocket(8189)) {
+            System.out.println("Server started!");
+            while (true) {
+                Socket socket = serverSocket.accept();
+                System.out.println("Client connected!");
 
-        ServerSocket serv = null;
-        Socket socket = null;
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try (DataInputStream inp = new DataInputStream(socket.getInputStream());
+                             DataOutputStream out = new DataOutputStream(socket.getOutputStream())) {
 
-        try {
-            serv = new ServerSocket(8189);
-            System.out.println("Сервер запущен, ожидаем подключения...");
-            socket = serv.accept();
-            System.out.println("Клиент подключился");
-            new Connect(socket);
+                            while (true) {
+                                String userName = inp.readUTF();
+                                String msg = inp.readUTF();
+                                if (msg.equals("end")) break;
+                                out.writeUTF("Сервер:" + userName);
+                                out.writeUTF("Эхо: " + msg);
+                                out.flush();
 
-        } catch (IOException e) {
-            System.out.println("Ошибка инициализации сервера");
-        } finally {
-            try {
-                serv.close();
-            } catch (IOException e) {
-                e.printStackTrace();
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }).start();
             }
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
-
-
     }
-
 }

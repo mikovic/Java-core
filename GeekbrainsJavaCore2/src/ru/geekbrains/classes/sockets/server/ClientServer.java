@@ -6,21 +6,28 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
-public class Connect implements Runnable, Closeable {
+public class ClientServer implements Runnable, Closeable {
 
     Socket socket;
     Thread thread;
+    DataInputStream in = null;
+    DataOutputStream out = null;
 
-    public Connect(Socket socket){
+    public ClientServer(Socket socket) {
         this.socket = socket;
-        new Thread(this).start();
-
+        thread = new Thread(this);
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
+
     @Override
     public void run() {
         System.out.println("Поток запущен");
-        DataInputStream in = null;
-        DataOutputStream out = null;
+
         try {
             in = new DataInputStream(socket.getInputStream());
             out = new DataOutputStream(socket.getOutputStream());
@@ -40,6 +47,10 @@ public class Connect implements Runnable, Closeable {
         }
 
 
+    }
+    public void sendMsg(String msg) throws IOException {
+        out.writeUTF(msg);
+        out.flush();
     }
 
     @Override

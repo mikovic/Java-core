@@ -2,12 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="54dddda5-3c3a-47b6-b37c-307ae7eaba61" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/consolchat/client/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/consolchat/server/Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/server/Connect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/server/ClientServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/server/MainClassServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/server/MainClassServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/chat/client/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/client/MainClassSocket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/chat/client/MainClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/client/MyWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/chat/client/MyWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/consolchat/client/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/consolchat/client/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/consolchat/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/consolchat/server/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/server/ClientServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/chat/server/ClientServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/server/MainClassServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/chat/server/MainServer.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -35,13 +37,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/consolchat/server/Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
-              <caret line="77" column="50" selection-start-line="77" selection-start-column="50" selection-end-line="77" selection-end-column="50" />
+            <state relative-caret-position="1377">
+              <caret line="85" selection-start-line="85" selection-end-line="85" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#1679#1680#0" expanded="true" />
                 <element signature="e#1723#1724#0" expanded="true" />
               </folding>
             </state>
@@ -49,19 +52,34 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/src.zip!/java/lang/Thread.java">
+        <entry file="file://$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/chat/client/MainClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="158">
-              <caret line="747" selection-start-line="747" selection-end-line="747" />
+            <state relative-caret-position="238">
+              <caret line="15" column="1" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/client/MainClassSocket.java">
+        <entry file="file://$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/chat/client/MyWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="1" lean-forward="true" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
+            <state relative-caret-position="425">
+              <caret line="37" column="34" selection-start-line="37" selection-start-column="34" selection-end-line="37" selection-end-column="34" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/chat/server/MainServer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="442">
+              <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -72,22 +90,32 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/consolchat/client/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="928">
-              <caret line="63" column="26" lean-forward="true" selection-start-line="63" selection-start-column="26" selection-end-line="63" selection-end-column="26" />
+            <state relative-caret-position="1139">
+              <caret line="70" selection-start-line="70" selection-end-line="70" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1387#1388#0" expanded="true" />
-                <element signature="e#1430#1431#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/client/Client.java">
+        <entry file="file://$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/chat/client/Client.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="28" column="47" selection-start-line="28" selection-start-column="47" selection-end-line="28" selection-end-column="47" />
+            <state relative-caret-position="357">
+              <caret line="25" column="63" selection-start-line="25" selection-start-column="63" selection-end-line="25" selection-end-column="63" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/chat/server/ClientServer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="12" column="18" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -134,7 +162,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Application.java" />
         <option value="$PROJECT_DIR$/src/ru/geekbrains/classes/Ф.java" />
         <option value="$PROJECT_DIR$/src/ru/geekbrains/classes/Animal.java" />
         <option value="$PROJECT_DIR$/src/ru/geekbrains/classes/Dog.java" />
@@ -180,8 +207,12 @@
         <option value="$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/consolchat/clientconsol/Client.java" />
         <option value="$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/client/Client.java" />
         <option value="$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/consolchat/client/Client.java" />
-        <option value="$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/consolchat/client/Main.java" />
+        <option value="$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/chat/client/MyWindow.java" />
+        <option value="$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/chat/client/Client.java" />
         <option value="$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/consolchat/server/Server.java" />
+        <option value="$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/consolchat/client/Main.java" />
+        <option value="$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/chat/server/ClientServer.java" />
+        <option value="$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/chat/server/MainServer.java" />
       </list>
     </option>
   </component>
@@ -199,6 +230,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -230,6 +263,15 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="classes" type="462c0819:PsiDirectoryNode" />
               <item name="sockets" type="462c0819:PsiDirectoryNode" />
+              <item name="chat" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GeekbrainsJavaCore2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GeekbrainsJavaCore2" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="classes" type="462c0819:PsiDirectoryNode" />
+              <item name="sockets" type="462c0819:PsiDirectoryNode" />
+              <item name="chat" type="462c0819:PsiDirectoryNode" />
               <item name="client" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -238,24 +280,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="classes" type="462c0819:PsiDirectoryNode" />
               <item name="sockets" type="462c0819:PsiDirectoryNode" />
-              <item name="consolchat" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GeekbrainsJavaCore2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GeekbrainsJavaCore2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-              <item name="sockets" type="462c0819:PsiDirectoryNode" />
-              <item name="consolchat" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GeekbrainsJavaCore2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GeekbrainsJavaCore2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-              <item name="sockets" type="462c0819:PsiDirectoryNode" />
-              <item name="consolchat" type="462c0819:PsiDirectoryNode" />
+              <item name="chat" type="462c0819:PsiDirectoryNode" />
               <item name="server" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -264,6 +289,24 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="classes" type="462c0819:PsiDirectoryNode" />
               <item name="sockets" type="462c0819:PsiDirectoryNode" />
+              <item name="consolchat" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GeekbrainsJavaCore2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GeekbrainsJavaCore2" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="classes" type="462c0819:PsiDirectoryNode" />
+              <item name="sockets" type="462c0819:PsiDirectoryNode" />
+              <item name="consolchat" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GeekbrainsJavaCore2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GeekbrainsJavaCore2" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="classes" type="462c0819:PsiDirectoryNode" />
+              <item name="sockets" type="462c0819:PsiDirectoryNode" />
+              <item name="consolchat" type="462c0819:PsiDirectoryNode" />
               <item name="server" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -284,12 +327,10 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549899229985" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549914195547" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
@@ -297,11 +338,11 @@
       <recent name="ru.geekbrains.classes.sockets.consolchat.clientconsol" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="ru.geekbrains.classes.sockets.chat" />
       <recent name="ru.geekbrains.classes.sockets.client" />
       <recent name="ru.geekbrains.classes.sockets.server" />
       <recent name="ru.geekbrains.classes.clientsocket" />
       <recent name="ru.geekbrains.classes.clientsocket.client" />
-      <recent name="ru.geekbrains.classes.sockets.server.client" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -316,7 +357,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.MainClient">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ru.geekbrains.classes.sockets.consolchat.client.Main" />
       <module name="GeekbrainsJavaCore2" />
@@ -330,25 +371,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MainClassServer" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ru.geekbrains.classes.sockets.server.MainClassServer" />
+    <configuration name="MainClient" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ru.geekbrains.classes.sockets.chat.client.MainClient" />
       <module name="GeekbrainsJavaCore2" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ru.geekbrains.classes.sockets.client.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MainClassSocket" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ru.geekbrains.classes.sockets.client.MainClassSocket" />
-      <module name="GeekbrainsJavaCore2" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ru.geekbrains.classes.sockets.client.*" />
+          <option name="PATTERN" value="ru.geekbrains.classes.sockets.chat.client.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -361,7 +389,46 @@
       <module name="GeekbrainsJavaCore2" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ru.geekbrains.classes.sockets.client.*" />
+          <option name="PATTERN" value="ru.geekbrains.classes.sockets.chat.client.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ru.geekbrains.classes.sockets.chat.server.MainServer" />
+      <module name="GeekbrainsJavaCore2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.geekbrains.classes.sockets.chat.server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ru.geekbrains.classes.sockets.chat.server.Main" />
+      <module name="GeekbrainsJavaCore2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.geekbrains.classes.sockets.chat.client.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ru.geekbrains.classes.sockets.chat.client.Main" />
+      <module name="GeekbrainsJavaCore2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.geekbrains.classes.sockets.chat.client.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -397,18 +464,18 @@
     </configuration>
     <list>
       <item itemvalue="Application.TestArrays" />
-      <item itemvalue="Application.MainClassServer" />
-      <item itemvalue="Application.MainClassSocket" />
       <item itemvalue="Application.MainClientClass" />
       <item itemvalue="Application.Main" />
       <item itemvalue="Application.Server" />
+      <item itemvalue="Application.MainServer" />
+      <item itemvalue="Application.MainClient" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MainClient" />
+        <item itemvalue="Application.MainServer" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.Server" />
-        <item itemvalue="Application.MainClassServer" />
-        <item itemvalue="Application.MainClassSocket" />
         <item itemvalue="Application.MainClientClass" />
       </list>
     </recent_temporary>
@@ -508,7 +575,14 @@
       <option name="project" value="LOCAL" />
       <updated>1549881183512</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="ДЗ№6 чат консольный">
+      <created>1549899301893</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1549899301893</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TodoView">
@@ -522,9 +596,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16414523" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16868381" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -533,7 +606,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32843137" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.17810458" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.17810458" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39869282" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -635,7 +708,20 @@
     <MESSAGE value="lesson6Пром 1 коммит рабочий" />
     <MESSAGE value="Почти готово ДЗ№6" />
     <MESSAGE value="ДЗ№6 чат оконный" />
-    <option name="LAST_COMMIT_MESSAGE" value="ДЗ№6 чат оконный" />
+    <MESSAGE value="ДЗ№6 чат консольный" />
+    <option name="LAST_COMMIT_MESSAGE" value="ДЗ№6 чат консольный" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/consolchat/client/Main.java</url>
+          <line>65</line>
+          <properties />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/ru/geekbrains/classes/Ф.java" />
@@ -890,54 +976,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/server/ClientServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="367">
-          <caret line="46" column="9" lean-forward="true" selection-start-line="46" selection-start-column="9" selection-end-line="46" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/consolchat/clientconsol/Client.java" />
-    <entry file="file://$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/client/MyWindow.java">
+    <entry file="file://$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/consolchat/client/Client.java" />
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/jre/lib/rt.jar!/sun/nio/cs/StreamDecoder.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="39" column="34" lean-forward="true" selection-start-line="39" selection-start-column="34" selection-end-line="39" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/server/MainClassServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="13" column="58" lean-forward="true" selection-start-line="13" selection-start-column="58" selection-end-line="13" selection-end-column="58" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/client/MainClassSocket.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="1" lean-forward="true" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/consolchat/client/Client.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="158">
+          <caret line="227" selection-start-line="227" selection-end-line="227" />
         </state>
       </provider>
     </entry>
@@ -948,10 +992,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/client/Client.java">
+    <entry file="file://$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/consolchat/server/Server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="28" column="47" selection-start-line="28" selection-start-column="47" selection-end-line="28" selection-end-column="47" />
+        <state relative-caret-position="1377">
+          <caret line="85" selection-start-line="85" selection-end-line="85" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1679#1680#0" expanded="true" />
+            <element signature="e#1723#1724#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/chat/client/MainClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="15" column="1" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/chat/client/MyWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="37" column="34" selection-start-line="37" selection-start-column="34" selection-end-line="37" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -960,23 +1026,40 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/consolchat/client/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="928">
-          <caret line="63" column="26" lean-forward="true" selection-start-line="63" selection-start-column="26" selection-end-line="63" selection-end-column="26" />
+        <state relative-caret-position="1139">
+          <caret line="70" selection-start-line="70" selection-end-line="70" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1387#1388#0" expanded="true" />
-            <element signature="e#1430#1431#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/consolchat/server/Server.java">
+    <entry file="file://$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/chat/client/Client.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="77" column="50" selection-start-line="77" selection-start-column="50" selection-end-line="77" selection-end-column="50" />
+        <state relative-caret-position="357">
+          <caret line="25" column="63" selection-start-line="25" selection-start-column="63" selection-end-line="25" selection-end-column="63" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1723#1724#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/chat/server/ClientServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="12" column="18" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/geekbrains/classes/sockets/chat/server/MainServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -71,25 +71,48 @@ public class Server {
             System.out.println("Вводите:");
         }
 
+
         public void sendMsg() throws IOException {
             String msg = null;
-            while (true) {
+            boolean flag = false;
+            while (!flag) {
+
                 if ((msg = console.readLine()) != null) {
-                    out.println("Server: " + msg);
+                    if (msg.equalsIgnoreCase("end")) {
+                        out.println(msg);
+                        flag = true;
+                    } else {
+                        out.println("Server: " + msg);
+
+                    }
+
                 }
             }
-
+            close();
         }
 
         public void readMsg() throws IOException {
-            while (true) {
-                String msg = null;
+            String msg = null;
+            boolean flag = false;
+            while (!flag) {
+
                 if ((msg = in.readLine()) != null) {
-                    System.out.println(msg);
-                    if ((msg.substring(msg.trim().length()-3)).equalsIgnoreCase("end")) break;
+                    if ((msg).equalsIgnoreCase("end")) {
+                        flag = true;
+                    } else {
+                        System.out.println(msg);
+                    }
+
+
                 }
             }
+            close();
         }
+
+
+
+
+
 
 
         void close() throws IOException {

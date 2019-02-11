@@ -1,12 +1,10 @@
-package ru.geekbrains.classes.sockets.client;
+package ru.geekbrains.classes.sockets.chat.client;
 
 import ru.geekbrains.classes.sockets.Message;
 import ru.geekbrains.classes.sockets.MessageSender;
 
-import javax.swing.*;
 import java.io.*;
 import java.net.Socket;
-import java.util.Scanner;
 
 public class Client implements Closeable {
     private final String SERVER_ADDR = "localhost";
@@ -26,7 +24,6 @@ public class Client implements Closeable {
             sock = new Socket(SERVER_ADDR, SERVER_PORT);
             in = new DataInputStream(sock.getInputStream());
             out = new DataOutputStream(sock.getOutputStream());
-            System.out.println("Введите сообщение: ");
         } catch (IOException e) {
             e.printStackTrace();
         }

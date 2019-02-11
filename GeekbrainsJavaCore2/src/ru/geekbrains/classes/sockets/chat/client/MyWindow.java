@@ -1,4 +1,4 @@
-package ru.geekbrains.classes.sockets.client;
+package ru.geekbrains.classes.sockets.chat.client;
 
 import ru.geekbrains.classes.sockets.Message;
 import ru.geekbrains.classes.sockets.MessageSender;
@@ -9,8 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
@@ -21,7 +19,7 @@ public class MyWindow extends JFrame implements MessageSender {
     private JTextField jtf;
     private JTextArea jta;
     private final String SERVER_ADDR = "localhost";
-    private final int SERVER_PORT = 8189;
+    private final int SERVER_PORT = 8180;
     private Socket sock;
     private Scanner in;
     private PrintWriter out;

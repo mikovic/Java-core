@@ -1,9 +1,9 @@
-package ru.geekbrains.classes.sockets.client;
+package ru.geekbrains.classes.sockets.chat.client;
 
 import javax.swing.*;
 import java.lang.reflect.InvocationTargetException;
 
-public class MainClassSocket {
+public class MainClient {
     public static void main(String[] args) throws InvocationTargetException, InterruptedException {
       SwingUtilities.invokeAndWait(new Runnable() {
           @Override

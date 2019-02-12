@@ -15,7 +15,7 @@ public class Client implements Closeable {
     private PrintWriter output;
     private final MessageSender messageSender;
 
-    Thread t;
+    Thread thread;
 
 
     public Client(MessageSender messageSender) {
@@ -28,7 +28,7 @@ public class Client implements Closeable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        this.t = new Thread(new Runnable() {
+        this.thread = new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
@@ -45,7 +45,7 @@ public class Client implements Closeable {
                 }
             }
         });
-        t.start();
+        thread.start();
 
     }
     public void sendMsg( Message message)  {

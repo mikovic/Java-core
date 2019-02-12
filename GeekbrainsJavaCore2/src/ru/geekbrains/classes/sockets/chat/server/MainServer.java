@@ -7,40 +7,64 @@ import java.util.ArrayList;
 
 public class MainServer {
 
-    static public ArrayList<Thread> listThread = new ArrayList<>();
-    static public Thread thread;
+
     public static void main(String[] args) {
+        ArrayList<Connect> connects = new ArrayList<>();
 
-
+        Thread thread;
         try (ServerSocket serverSocket = new ServerSocket(8180)) {
             System.out.println("Server started!");
             while (true) {
                 Socket socket = serverSocket.accept();
                 System.out.println("Client connected!");
-
-
-                thread =new Thread(new Runnable() {
+                new Thread(new Runnable() {
                     @Override
                     public void run() {
 
-                            ClientServer clientServer =new ClientServer(socket);
+                            Connect connect = new Connect(socket);
+                            synchronized (connects){
+                                connects.add(connect);
+                            }
+
                             while (true) {
                                 try {
-                                    clientServer.sendEho();
+
+                                    connect.sendEho();
                                 } catch (IOException e) {
+                                    e.printStackTrace();
+                                } catch (InterruptedException e) {
                                     e.printStackTrace();
                                 }
                             }
+                        }
 
+                }).start();
+                Thread.sleep(1000);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
+                        String msg;
 
+                        try {
+                            while ((msg = console.readLine()) != null) {
+                                synchronized (connects) {
+                                    for (Connect connect : connects) {
+                                        connect.readMsgFromConsole(msg);
+                                    }
+                                }
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
-                });
-                thread.start();
-
+                }).start();
 
             }
         } catch (IOException ex) {
             ex.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }

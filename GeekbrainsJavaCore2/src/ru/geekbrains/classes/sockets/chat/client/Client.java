@@ -8,10 +8,11 @@ import java.net.Socket;
 
 public class Client implements Closeable {
     private final String SERVER_ADDR = "localhost";
-    private final int SERVER_PORT = 8189;
+    private final int SERVER_PORT = 8180;
     private Socket sock;
     private DataInputStream in;
     private  DataOutputStream out;
+    private PrintWriter output;
     private final MessageSender messageSender;
 
     Thread t;
@@ -45,6 +46,7 @@ public class Client implements Closeable {
             }
         });
         t.start();
+
     }
     public void sendMsg( Message message)  {
         try {

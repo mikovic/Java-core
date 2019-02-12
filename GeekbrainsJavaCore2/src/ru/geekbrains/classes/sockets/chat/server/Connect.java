@@ -6,17 +6,18 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
-public class ClientServer implements  Closeable {
+public class Connect implements  Closeable {
 
     DataInputStream in;
     DataOutputStream out;
     Socket socket;
 
-    public ClientServer(Socket socket){
+    public Connect(Socket socket){
 
         try {
             this.in = new DataInputStream(socket.getInputStream());
             this.out = new DataOutputStream(socket.getOutputStream());
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -24,7 +25,7 @@ public class ClientServer implements  Closeable {
 
 }
 
-    public void sendEho() throws IOException {
+    public  void sendEho() throws IOException, InterruptedException {
 
             String userName = in.readUTF();
             String msg = in.readUTF();
@@ -33,8 +34,14 @@ public class ClientServer implements  Closeable {
             out.writeUTF("Эхо: " + msg);
             out.flush();
 
+
+
     }
-    public void readMsg(){
+    public  void readMsgFromConsole(String msg) throws IOException {
+        out.writeUTF("Сервер");
+        out.writeUTF(msg);
+        out.flush();
+      ;
 
     }
 

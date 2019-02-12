@@ -38,10 +38,9 @@ public class Client implements Closeable {
                             if (msg.equalsIgnoreCase("end session")) break;
                             messageSender.submitMessage(userName, msg);
 
-
-
                     }
                 } catch (Exception e) {
+                     e.printStackTrace();
                 }
             }
         });
@@ -51,25 +50,17 @@ public class Client implements Closeable {
     public void sendMsg( Message message)  {
         try {
             out.writeUTF(message.getUserName());
+             out.writeUTF(message.getMessage());
+             out.writeUTF(message.getMessage());
         } catch (IOException e) {
             e.printStackTrace();
-        }
-        try {
-            out.writeUTF(message.getMessage());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            out.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        }        
 
     }
 
     @Override
     public void close() throws IOException {
-        t.interrupt();
+        ttread.interrupt();
         sock.close();
     }
 }

@@ -9,7 +9,8 @@ public class MainServer {
 
 
     public static void main(String[] args) {
-        ArrayList<Connect> connects = new ArrayList<>();
+        ArrayList<Connect> connects;
+        connects = Collections.synchronizedList(new ArrayList<Connect>());
 
         Thread thread;
         try (ServerSocket serverSocket = new ServerSocket(8180)) {
@@ -39,7 +40,7 @@ public class MainServer {
                         }
 
                 }).start();
-                Thread.sleep(1000);
+                
                 new Thread(new Runnable() {
                     @Override
                     public void run() {

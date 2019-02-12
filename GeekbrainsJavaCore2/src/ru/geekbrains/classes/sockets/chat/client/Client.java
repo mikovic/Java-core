@@ -60,7 +60,7 @@ public class Client implements Closeable {
 
     @Override
     public void close() throws IOException {
-        ttread.interrupt();
+        thread.interrupt();
         sock.close();
     }
 }

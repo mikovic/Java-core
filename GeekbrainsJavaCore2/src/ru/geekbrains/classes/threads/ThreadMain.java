@@ -1,5 +1,7 @@
 package ru.geekbrains.classes.threads;
 
+import java.util.Arrays;
+
 public class ThreadMain {
     static final  int  SIZE = 10000000;
     static final  int HALF = SIZE / 2;
@@ -7,75 +9,75 @@ public class ThreadMain {
     private Thread thr2;
 
     public static void main(String[] args) {
+
         float[] a1;
         float[] a2;
         float[] arr;
         arr = new float[SIZE];
         a1 = new float[HALF];
         a2 = new float[HALF];
-        for (int i = 0; i < SIZE; i++) {
-            arr[i] = 1;
-
-        }
+        Timer timer = new Timer();
+        Arrays.fill(arr, 1);
         ThreadMain threadMain = new ThreadMain();
         System.out.println("Start");
-        new Thread(() -> threadMain.method1(arr)).start();
-        new Thread(() ->threadMain .method2(arr, a1, a2)).start();
+        new Thread(() -> threadMain.method1(arr, timer)).start();
+        new Thread(() ->threadMain .method2(arr, a1, a2, timer)).start();
 
     }
 
 
 
-    public synchronized void method1(float[] arr) {
+    public synchronized void method1(float[] arr, Timer timer ) {
+        timer.start();
         long a = System.currentTimeMillis();
-        for (int i = 0; i < SIZE; i++) {
-            arr[i] = formula(arr[i]);
-
-        }
-        a = System.currentTimeMillis() - a;
-        System.out.println("Время выполнения первого метода: " + a);
+        Arrays.fill(arr, formula(arr[0]));
+        timer.stop();
+        System.out.println("Первый метод. Заполнение массива." + timer);
     }
 
-    public synchronized void method2(float[] arr, float[] a1, float[] a2) {
-        long a = System.currentTimeMillis();
+    public synchronized void method2(float[] arr, float[] a1, float[] a2, Timer timer) {
+        timer.start();
         System.arraycopy(arr, 0, a1, 0, HALF);
         System.arraycopy(arr, HALF, a2, 0, HALF);
-        a = System.currentTimeMillis() - a;
-        System.out.println("Время разбивки массива: " + a);
+        timer.stop();
+        System.out.println("Разбиение массива." + timer);
         thr1 = new Thread(new Runnable() {
             @Override
             public void run() {
-                long a = System.currentTimeMillis();
-                for (int i = 0; i < HALF; i++) {
-                    a1[i] = formula(a1[i]);
-
-                }
-                a = System.currentTimeMillis() - a;
-                System.out.println("Время просчета 1 массива: " + a);
+                timer.start();
+                Arrays.fill(a1, formula(a1[0]));
+                timer.stop();
+                System.out.println("Просчет 1 массива: " + timer);
             }
 
         });
         thr2 = new Thread(new Runnable() {
             @Override
             public void run() {
-                long a = System.currentTimeMillis();
-                for (int i = 0; i < HALF; i++) {
-                    a2[i] = formula(a2[i]);
-
-                }
-                a = System.currentTimeMillis() - a;
-                System.out.println("Время просчета 2 массива: " + a);
+                timer.start();
+                Arrays.fill(a2, formula(a2[0]));
+                timer.stop();
+                System.out.println("Просчет 2 массива: " + timer);
             }
 
         });
         thr1.start();
+        try {
+            thr1.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         thr2.start();
-        a = System.currentTimeMillis();
+        try {
+            thr2.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        timer.start();
         System.arraycopy(a1, 0, arr, 0, HALF);
         System.arraycopy(a2, 0, arr, HALF, HALF);
-
-        a = System.currentTimeMillis() - a;
-        System.out.println("Время разбивки массива: " + a);
+        timer.stop();
+        System.out.println("Склеивание 2-ух массивов: " + timer);
 
     }
 

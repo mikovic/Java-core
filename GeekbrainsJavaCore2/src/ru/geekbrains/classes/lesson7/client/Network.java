@@ -1,4 +1,4 @@
-package ru.geekbrains.classes.lesson7v.client;
+package ru.geekbrains.classes.lesson7.client;
 
 import ru.geekbrains.classes.sockets.MessageSender;
 
@@ -8,11 +8,12 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.regex.Pattern;
 
 public class Network implements Closeable {
 
     private static final String AUTH_PATTERN = "/auth %s %s";
-
+    private static final Pattern SEND_PATTERN = Pattern.compile("^/send (.+) (.+)$");
     private final Socket socket;
     private final DataOutputStream out;
     private final DataInputStream in;
@@ -32,12 +33,18 @@ public class Network implements Closeable {
             public void run() {
                 while (!Thread.currentThread().isInterrupted()) {
                     try {
-                        String msg = in.readUTF();
+                        String str = in.readUTF();
                         SwingUtilities.invokeLater(new Runnable() {
                             @Override
                             public void run() {
-                                System.out.println("New message " + msg);
-                                messageSender.submitMessage("server", msg);
+                                if (str.startsWith("/send")) {
+                                    String[] parts = str.split("\\s");
+                                    messageSender.submitMessage(parts[1], parts[2]);
+                                }
+                                if (str.startsWith("/sendto")) {
+                                    String[] parts = str.split("\\s");
+                                    messageSender.submitMessage(parts[2]+"(лично)", parts[3]);
+                                }
                             }
                         });
                     } catch (IOException e) {
@@ -47,7 +54,9 @@ public class Network implements Closeable {
             }
         });
 
+
     }
+
 
     public void sendMessage(String msg) {
         try {
@@ -61,6 +70,7 @@ public class Network implements Closeable {
     public void authorize(String username, String password) {
         try {
             out.writeUTF(String.format(AUTH_PATTERN, username, password));
+            out.flush();
             String response = in.readUTF();
             if (response.equals("/auth successful")) {
                 this.username = username;

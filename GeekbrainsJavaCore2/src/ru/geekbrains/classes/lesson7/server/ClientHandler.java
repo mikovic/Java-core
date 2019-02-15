@@ -1,109 +1,61 @@
 package ru.geekbrains.classes.lesson7.server;
 
-
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
-import java.util.ArrayList;
+import java.util.regex.Pattern;
+
 
 public class ClientHandler {
-    private MyServer myServer;
-    private Socket socket;
-    private DataInputStream in;
-    private DataOutputStream out;
-    private String name;
-    private Thread thread;
-    public String getName() {
-        return name;
-    }
 
-    public ClientHandler(MyServer myServer, Socket socket) {
-        try {
-            this.myServer = myServer;
-            this.socket = socket;
-            this.in = new DataInputStream(socket.getInputStream());
-            this.out = new DataOutputStream(socket.getOutputStream());
-            this.name = "";
+    private static final Pattern MESSAGE_PATTERN = Pattern.compile("^/w (.+) (.+)$");
+    private final Thread handleThread;
+    private final DataInputStream inp;
+    private final DataOutputStream out;
+    private final ChatServer server;
+    private final String username;
+    private final Socket socket;
 
+
+    public ClientHandler(String username, Socket socket, ChatServer server) throws IOException {
+        this.username = username;
+        this.socket = socket;
+        this.server = server;
+        this.inp = new DataInputStream(socket.getInputStream());
+        this.out = new DataOutputStream(socket.getOutputStream());
+
+
+        this.handleThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    while (!Thread.currentThread().isInterrupted()) {
+                        String msg = inp.readUTF();
+                        System.out.printf("Message from user %s: %s%n", username, msg);
+                        // TODO реализовать прием сообщений от клиента и пересылку адресату через сервер
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } finally {
+                    System.out.printf("Client %s disconnected%n", username);
                     try {
-                        authentication();
-
+                        socket.close();
                     } catch (IOException e) {
                         e.printStackTrace();
-                    } finally {
-                        closeConnection();
                     }
-
-
-        } catch (IOException e) {
-            throw new RuntimeException("Проблемы при создании обработчика клиента");
-        }
-    }
-
-    public void authentication() throws IOException {
-        while (true) {
-            String str = this.in.readUTF();
-            if (str.startsWith("/auth")) {
-                String[] parts = str.split("\\s");
-                String nick = myServer.getAuthService().getNickByLoginPass(parts[1], parts[2]);
-                if (nick != null) {
-                    if (!myServer.isNickBusy(nick)) {
-                        sendMsg("/authok " + nick);
-                        name = nick;
-                        myServer.broadcastMsg(name + " зашел в чат");
-                        myServer.subscribe(this);
-                        return;
-                    } else {
-                        sendMsg("Учетная запись уже используется");
-                    }
-                } else {
-                    sendMsg("Неверные логин/пароль");
                 }
             }
-        }
-    }
 
-    public void readMessages() throws IOException {
-        while (true) {
-            String strFromClient = in.readUTF();
-            System.out.println("от " + name + ": " + strFromClient);
-            if (strFromClient.equals("/end")) {
-                return;
-            }
-            myServer.broadcastMsg(name + ": " + strFromClient);
-        }
-    }
 
-    public void sendMsg(String msg) {
+        });
+        handleThread.start();
+    }
+    public void sendMessage(String msg){
         try {
             out.writeUTF(msg);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
-
-
-    public void closeConnection() {
-        myServer.unsubscribe(this);
-        myServer.broadcastMsg(name + " вышел из чата");
-        try {
-            in.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            out.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            socket.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 }
-
-

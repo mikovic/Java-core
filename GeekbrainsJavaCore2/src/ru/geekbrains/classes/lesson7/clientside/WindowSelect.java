@@ -1,4 +1,6 @@
-package ru.geekbrains.classes.lesson7.client;
+package ru.geekbrains.classes.lesson7.clientside;
+
+import ru.geekbrains.classes.lesson7.client.MainWindow;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -46,4 +48,3 @@ public class WindowSelect extends JFrame {
     }
 
 }
-

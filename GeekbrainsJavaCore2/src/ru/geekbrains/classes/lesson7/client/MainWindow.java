@@ -1,11 +1,13 @@
 package ru.geekbrains.classes.lesson7.client;
 
+import ru.geekbrains.classes.lesson7.clientside.WindowSelect;
 import ru.geekbrains.classes.sockets.MessageSender;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
+
 
 public class MainWindow extends JFrame implements MessageSender {
 

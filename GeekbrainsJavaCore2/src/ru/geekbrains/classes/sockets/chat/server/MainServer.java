@@ -4,12 +4,14 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class MainServer {
 
 
     public static void main(String[] args) {
-        ArrayList<Connect> connects;
+        List<Connect> connects;
         connects = Collections.synchronizedList(new ArrayList<Connect>());
 
         Thread thread;
@@ -40,7 +42,7 @@ public class MainServer {
                         }
 
                 }).start();
-                
+
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -49,23 +51,21 @@ public class MainServer {
 
                         try {
                             while ((msg = console.readLine()) != null) {
-                                synchronized (connects) {
+
                                     for (Connect connect : connects) {
                                         connect.readMsgFromConsole(msg);
                                     }
                                 }
-                            }
-                        } catch (IOException e) {
-                            e.printStackTrace();
+                            } catch (IOException e1) {
+                            e1.printStackTrace();
                         }
                     }
+
                 }).start();
 
             }
         } catch (IOException ex) {
             ex.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
     }
 }

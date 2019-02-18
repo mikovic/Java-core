@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 
 public class MainWindow extends JFrame implements MessageSender {
-
     private JTextField textField;
     private JButton button;
     private JScrollPane scrollPane;
@@ -22,18 +21,8 @@ public class MainWindow extends JFrame implements MessageSender {
     private JButton btnSend;
     private JButton btnSelect;
     private JLabel jLabel;
-    private String users[] = {"ivan","petr","roma"};
     private WindowSelect windowSelect;
-    private ArrayList<String> listUsers = new ArrayList<>();
 
-    public String[] getUsers() {
-        return users;
-    }
-
-
-    public void setUsers(String[] users) {
-        this.users = users;
-    }
 
     public Network network;
 
@@ -42,9 +31,7 @@ public class MainWindow extends JFrame implements MessageSender {
         setTitle("Сетевой чат");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setBounds(200, 200, 500, 500);
-
         setLayout(new BorderLayout());   // выбор компоновщика элементов
-
         listModel = new DefaultListModel<>();
         list = new JList<>(listModel);
         list.setCellRenderer(new MessageCellRenderer());
@@ -64,7 +51,6 @@ public class MainWindow extends JFrame implements MessageSender {
         panel.setBackground(list.getBackground());
         scrollPane = new JScrollPane(panel);
         add(scrollPane, BorderLayout.CENTER);
-
         textField = new JTextField();
         button = new JButton("Send");
         jLabel = new JLabel("ALL");
@@ -82,11 +68,10 @@ public class MainWindow extends JFrame implements MessageSender {
                 } else {
                     String text = textField.getText().trim();
                     text = "/mail " + jLabel.getText().trim() + " " + network.getUsername() + " " + text;
+                    textField.setText(null);
                     network.sendMessage(text);
                     windowSelect.setVisible(false);
                 }
-
-
             }
 
         });
@@ -109,11 +94,8 @@ public class MainWindow extends JFrame implements MessageSender {
         panel.add(jLabel, BorderLayout.WEST);
         panel.add(button, BorderLayout.EAST);
         panel.add(textField, BorderLayout.CENTER);
-
         add(panel, BorderLayout.SOUTH);
-
         windowSelect = new WindowSelect(this);
-
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -127,10 +109,6 @@ public class MainWindow extends JFrame implements MessageSender {
                 super.windowClosing(e);
             }
         });
-
-        WindowSelect windowSelect = new WindowSelect(this);
-        windowSelect.setVisible(false);
-
         btnSelect.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -140,13 +118,9 @@ public class MainWindow extends JFrame implements MessageSender {
         });
 
         setVisible(true);
-
         network = new Network("localhost", 777, this);
-
         LoginDialog loginDialog = new LoginDialog(this, network);
         loginDialog.setVisible(true);
-
-
         if (!loginDialog.isAuthSuccessful()) {
             System.exit(0);
         }
@@ -154,16 +128,13 @@ public class MainWindow extends JFrame implements MessageSender {
         setTitle("Сетевой чат. Пользователь " + this.network.getUsername());
     }
 
-    public JLabel getjLabel() {
-        return jLabel;
-    }
-
-
     @Override
     public void addUser(String user) {
-
-        this.listUsers.add(user);
-        System.out.println("Добавили "+user);
+        if (!windowSelect.listModel.contains(user)) {
+            windowSelect.listModel.addElement(user);
+        } else {
+            return;
+        }
     }
 
     @Override
@@ -173,19 +144,20 @@ public class MainWindow extends JFrame implements MessageSender {
         }
         Message msg = new Message(user, message);
         listModel.add(listModel.size(), msg);
-
         list.ensureIndexIsVisible(listModel.size() - 1);
-
     }
 
     @Override
-    public void setListUsers() {
+    public void removeUser(String user) {
+        if (windowSelect.listModel.contains(user)) {
+            windowSelect.listModel.removeElement(user);
+        } else {
+            return;
+        }
+    }
 
-        String us[] = new String[listUsers.size()];
-        this.users = listUsers.toArray(us);
-        System.out.print(this.users);
-        windowSelect = new WindowSelect(this);
-        System.out.println(windowSelect);
-
+    public JLabel getjLabel() {
+        return jLabel;
     }
 }
+

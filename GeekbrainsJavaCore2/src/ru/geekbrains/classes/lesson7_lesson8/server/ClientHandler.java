@@ -34,23 +34,19 @@ public class ClientHandler {
                 try {
                     while (!Thread.currentThread().isInterrupted()) {
                         String message = inp.readUTF();
-
-
                         if (message.startsWith("/send")) {
                             System.out.printf("Message from user %s: %s%n", username, message);
                             server.sendMessage(message);
-
-
-
                         }
                         if (message.startsWith("/mail")) {
-                            System.out.println (message);
-                            server.sendMessageTo( message);
-
-
+                            System.out.println(message);
+                            server.sendMessageTo(message);
                         }
-
-
+                        if (message.startsWith(("/list"))) ;
+                        System.out.println(message);
+                        server.getListUsers();
+                        System.out.println(server.getListUsers());
+                        sendList(server.getListUsers());
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -61,30 +57,32 @@ public class ClientHandler {
                 }
             }
 
-
         });
         handleThread.start();
     }
-    public void sendMessage(String msg){
+    public void sendMessage(String msg) {
         try {
             out.writeUTF(msg);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
     public String getUsername() {
         return username;
     }
 
     public void sendList(String[] listUsers) throws IOException {
-
-          for (int i = 0; i < listUsers.length; i++){
-              if(i != (listUsers.length - 1)){
-                  out.writeUTF("/list "+listUsers[i]);
-              }else {
-                  out.writeUTF("/finish " + listUsers[i]);
-              }
-          }
+        int len = listUsers.length;
+        if (len == 1) {
+            out.writeUTF("/finish " + listUsers[0]);
+        }else {
+            for (int i = 0; i < len - 1; i++) {
+                out.writeUTF("/list " + listUsers[i]);
+            }
+            out.writeUTF(("/finish " + listUsers[len - 1]));
         }
+
     }
+
+
+}

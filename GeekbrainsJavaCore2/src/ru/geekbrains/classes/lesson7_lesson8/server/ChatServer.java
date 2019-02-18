@@ -10,15 +10,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ChatServer {
-
     private static final Pattern AUTH_PATTERN = Pattern.compile("^/auth (.+) (.+)$");
     private static final Pattern SEND_PATTERN = Pattern.compile("^/send (.+) (.+)$");
     private static final Pattern SENDTO_PATTERN = Pattern.compile("^/mail (.+) (.+) (.+)$");
-    private static final String USER_DISCONN_PATTERN = "/rmvuser";
     private AuthService authService = new AuthServiceImpl();
-
     private Map<String, ClientHandler> clientHandlerMap = Collections.synchronizedMap(new HashMap<>());
-
     public static void main(String[] args) {
         ChatServer chatServer = new ChatServer();
         chatServer.start(777);
@@ -36,15 +32,15 @@ public class ChatServer {
                 try {
                     String message = inp.readUTF();
                     Matcher matcher = AUTH_PATTERN.matcher(message);
-
                     if (matcher.matches()) {
                         String username = matcher.group(1);
                         String password = matcher.group(2);
                         if (authService.authUser(username, password)) {
-                            String[] listUsers = getListUsers();
-                            clientHandlerMap.put(username,new ClientHandler(username, socket, this));
+                            ClientHandler clientHandler = new ClientHandler(username, socket, this);
+                            clientHandlerMap.put(username,clientHandler );
                             out.writeUTF("/auth successful");
                             broadcastUserConnected(username);
+                            clientHandler.sendList(getListUsers());
                             out.flush();
                             System.out.printf("Authorization for user %s successful%n", username);
                         } else {
@@ -53,9 +49,7 @@ public class ChatServer {
                             out.flush();
                             socket.close();
                         }
-
                     }
-
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -103,10 +97,9 @@ public class ChatServer {
     }
 
     public void broadcastUserDisconnected(String userName) {
-
+        getClientHandlerMap().remove(userName);
         Set<Map.Entry<String, ClientHandler>> set = getClientHandlerMap().entrySet();
         for (Map.Entry<String, ClientHandler> client : set) {
-
             client.getValue().sendMessage("/rmvuser " + userName + " отключился");
         }
 
@@ -116,15 +109,17 @@ public class ChatServer {
         for (Map.Entry<String, ClientHandler> client : set) {
             if (!userName.equals(client.getKey())) {
                 client.getValue().sendMessage("/conectuser " + userName + " подключился");
+
             }
         }
     }
 
-    public String[] getListUsers()  throws IOException {
+    public String[] getListUsers()  {
         Collection<String> users = getClientHandlerMap().keySet();
         return users.toArray(new String[users.size()]);
 
     }
+
 }
 
 

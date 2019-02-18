@@ -1,6 +1,4 @@
-package ru.geekbrains.classes.lesson7.clientside;
-
-import ru.geekbrains.classes.lesson7.client.MainWindow;
+package ru.geekbrains.classes.lesson7_lesson8.client;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -33,7 +31,8 @@ public class WindowSelect extends JFrame {
                 int idx = jList.getSelectedIndex();
                 if (idx != -1) {
                     jLabel.setText("Current selection: " + users[idx]);
-                    window.getjBtnLabel().setText(users[idx]);
+                    window.getjLabel().setText(users[idx]);
+                    setVisible(false);
                 } else {
                     jLabel.setText("Please choose a user!");
                 }

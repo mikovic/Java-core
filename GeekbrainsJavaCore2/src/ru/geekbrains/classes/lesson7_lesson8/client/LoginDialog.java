@@ -1,14 +1,11 @@
-package ru.geekbrains.classes.lesson7.client;
+package ru.geekbrains.classes.lesson7_lesson8.client;
 
-
-import ru.geekbrains.classes.sockets.MessageSender;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 public class LoginDialog extends JDialog {
 
@@ -18,13 +15,13 @@ public class LoginDialog extends JDialog {
     private JLabel lbPassword;
     private JButton btnLogin;
     private JButton btnCancel;
-
+    private boolean connected;
     private Network network;
 
-    public LoginDialog(Frame parent) {
+    public LoginDialog(Frame parent, Network network) {
         super(parent, "Login", true);
-
-        network = null;
+        this.connected = false;
+        this.network = network;
 
         JPanel panel = new JPanel(new GridBagLayout());
         GridBagConstraints cs = new GridBagConstraints();
@@ -65,15 +62,8 @@ public class LoginDialog extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    network = new Network("localhost", 7777, (MessageSender) parent);
                     network.authorize(tfUsername.getText(), String.valueOf(pfPassword.getPassword()));
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                    JOptionPane.showMessageDialog(LoginDialog.this,
-                            "Ошибка сети",
-                            "Авторизация",
-                            JOptionPane.ERROR_MESSAGE);
-                    return;
+                    connected = true;
                 } catch (AuthException ex) {
                     JOptionPane.showMessageDialog(LoginDialog.this,
                             "Ошибка авторизации",

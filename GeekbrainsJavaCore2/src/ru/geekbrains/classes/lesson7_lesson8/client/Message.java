@@ -1,4 +1,4 @@
-package ru.geekbrains.classes.lesson7.client;
+package ru.geekbrains.classes.lesson7_lesson8.client;
 
 import java.time.LocalDate;
 

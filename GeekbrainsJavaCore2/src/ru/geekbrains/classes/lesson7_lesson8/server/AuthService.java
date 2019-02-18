@@ -1,4 +1,4 @@
-package ru.geekbrains.classes.lesson7.server;
+package ru.geekbrains.classes.lesson7_lesson8.server;
 
 
 public interface AuthService {

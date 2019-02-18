@@ -1,12 +1,11 @@
-package ru.geekbrains.classes.lesson7.client;
+package ru.geekbrains.classes.lesson7_lesson8.client;
 
-import ru.geekbrains.classes.lesson7.clientside.WindowSelect;
-import ru.geekbrains.classes.sockets.MessageSender;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 public class MainWindow extends JFrame implements MessageSender {
@@ -22,28 +21,24 @@ public class MainWindow extends JFrame implements MessageSender {
     private JButton btnSignUp;
     private JButton btnSend;
     private JButton btnSelect;
-    private JButton jBtnLabel;
-    private String users[] = {"Ivan", "Петр"};
+    private JLabel jLabel;
+    private String users[] = {"ivan","petr","roma"};
     private WindowSelect windowSelect;
+    private ArrayList<String> listUsers = new ArrayList<>();
 
     public String[] getUsers() {
         return users;
     }
 
-    public JButton getjBtnLabel() {
-
-        return jBtnLabel;
-
-    }
 
     public void setUsers(String[] users) {
         this.users = users;
     }
 
-    private Network network;
+    public Network network;
 
 
-    public MainWindow() {
+    public MainWindow() throws IOException {
         setTitle("Сетевой чат");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setBounds(200, 200, 500, 500);
@@ -56,10 +51,12 @@ public class MainWindow extends JFrame implements MessageSender {
         JMenuBar mainMenu = new JMenuBar();
         JButton btnSignIn = new JButton("Sign in");
         JButton btnSignUp = new JButton("Sign up");
-        JButton btnSelect = new JButton("USERS");
+        JButton btnSend = new JButton("Chose All");
+        JButton btnSelect = new JButton("Chose User");
         setJMenuBar(mainMenu);
         mainMenu.add(btnSignUp);
         mainMenu.add(btnSignIn);
+        mainMenu.add(btnSend);
         mainMenu.add(btnSelect);
         panel = new JPanel();
         panel.setLayout(new BorderLayout());
@@ -70,24 +67,33 @@ public class MainWindow extends JFrame implements MessageSender {
 
         textField = new JTextField();
         button = new JButton("Send");
-        jBtnLabel = new JButton("ALL");
+        jLabel = new JLabel("ALL");
         button.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if((jBtnLabel.getText() =="ALL")){
+                if ((jLabel.getText() == "ALL")) {
                     String text = textField.getText();
                     submitMessage(network.getUsername(), text);
                     textField.setText(null);
                     textField.requestFocus();
                     text = "/send " + network.getUsername() + " " + text;
                     network.sendMessage(text);
-                }else {
+
+                } else {
                     String text = textField.getText().trim();
-                    text = "/sendto " + jBtnLabel.getText().trim() + " "+ network.getUsername() + " " + text;
+                    text = "/mail " + jLabel.getText().trim() + " " + network.getUsername() + " " + text;
                     network.sendMessage(text);
+                    windowSelect.setVisible(false);
                 }
 
 
+            }
+
+        });
+        btnSend.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jLabel.setText("ALL");
             }
         });
 
@@ -100,17 +106,13 @@ public class MainWindow extends JFrame implements MessageSender {
 
         panel = new JPanel();
         panel.setLayout(new BorderLayout());
-        panel.add(jBtnLabel, BorderLayout.WEST);
+        panel.add(jLabel, BorderLayout.WEST);
         panel.add(button, BorderLayout.EAST);
         panel.add(textField, BorderLayout.CENTER);
-        jBtnLabel.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jBtnLabel.setText("ALL");
-            }
-        });
+
         add(panel, BorderLayout.SOUTH);
 
+        windowSelect = new WindowSelect(this);
 
         addWindowListener(new WindowAdapter() {
             @Override
@@ -127,6 +129,8 @@ public class MainWindow extends JFrame implements MessageSender {
         });
 
         WindowSelect windowSelect = new WindowSelect(this);
+        windowSelect.setVisible(false);
+
         btnSelect.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -137,14 +141,29 @@ public class MainWindow extends JFrame implements MessageSender {
 
         setVisible(true);
 
-        LoginDialog loginDialog = new LoginDialog(this);
+        network = new Network("localhost", 777, this);
+
+        LoginDialog loginDialog = new LoginDialog(this, network);
         loginDialog.setVisible(true);
+
 
         if (!loginDialog.isAuthSuccessful()) {
             System.exit(0);
         }
         this.network = loginDialog.getNetwork();
         setTitle("Сетевой чат. Пользователь " + this.network.getUsername());
+    }
+
+    public JLabel getjLabel() {
+        return jLabel;
+    }
+
+
+    @Override
+    public void addUser(String user) {
+
+        this.listUsers.add(user);
+        System.out.println("Добавили "+user);
     }
 
     @Override
@@ -154,7 +173,19 @@ public class MainWindow extends JFrame implements MessageSender {
         }
         Message msg = new Message(user, message);
         listModel.add(listModel.size(), msg);
+
         list.ensureIndexIsVisible(listModel.size() - 1);
+
+    }
+
+    @Override
+    public void setListUsers() {
+
+        String us[] = new String[listUsers.size()];
+        this.users = listUsers.toArray(us);
+        System.out.print(this.users);
+        windowSelect = new WindowSelect(this);
+        System.out.println(windowSelect);
 
     }
 }

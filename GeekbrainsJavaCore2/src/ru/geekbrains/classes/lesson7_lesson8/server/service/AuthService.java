@@ -1,4 +1,4 @@
-package ru.geekbrains.classes.lesson7.server.service;
+package ru.geekbrains.classes.lesson7_lesson8.server.service;
 
 public interface AuthService {
     void start();

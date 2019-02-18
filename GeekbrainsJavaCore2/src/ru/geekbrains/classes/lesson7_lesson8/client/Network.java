@@ -1,13 +1,13 @@
-package ru.geekbrains.classes.lesson7.client;
+package ru.geekbrains.classes.lesson7_lesson8.client;
 
-import ru.geekbrains.classes.sockets.MessageSender;
+import ru.geekbrains.classes.lesson7_lesson8.client.MessageSender;
 
-import javax.swing.*;
 import java.io.Closeable;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 public class Network implements Closeable {
@@ -20,6 +20,7 @@ public class Network implements Closeable {
     private final MessageSender messageSender;
     private final Thread receiver;
 
+
     private String username;
 
     public Network(String hostName, int port, MessageSender messageSender) throws IOException {
@@ -31,29 +32,55 @@ public class Network implements Closeable {
         this.receiver = new Thread(new Runnable() {
             @Override
             public void run() {
-                while (!Thread.currentThread().isInterrupted()) {
+                try {
+                    while (!Thread.currentThread().isInterrupted()) {
+                        String msg = in.readUTF();
+
+                        if (msg.startsWith("/send")) {
+                            String[] parts = msg.split("\\s");
+                            messageSender.submitMessage(parts[1], parts[2]);
+                        }
+                        else if (msg.startsWith("/mail")) {
+                            String[] parts = msg.split("\\s");
+                            messageSender.submitMessage(parts[2]+"(лично)", parts[3]);
+                        }
+                        else if  (msg.startsWith("/rmvuser")) {
+                            String[] parts = msg.split("\\s");
+                            messageSender.submitMessage(parts[1], parts[2]);
+                        }
+                        else if (msg.startsWith("/conectuser")) {
+                            String[] parts = msg.split("\\s");
+                            messageSender.submitMessage(parts[1], parts[2]);
+                        }
+                        else if (msg.startsWith("/list")) {
+                            String userName = msg.substring(msg.length()-1);
+                            messageSender.addUser(userName);
+                            System.out.printf("Message from user %s: %s%n", username, msg);
+
+                        }
+                        else if (msg.startsWith(("/finish"))) {
+                            messageSender.addUser(msg.substring(msg.length()-1));
+                            messageSender.setListUsers();
+                            System.out.printf("Message from user %s: %s%n", username, msg);
+                        }
+
+                    }
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } finally {
+                    System.out.printf("Client %s disconnected%n", username);
+
                     try {
-                        String str = in.readUTF();
-                        SwingUtilities.invokeLater(new Runnable() {
-                            @Override
-                            public void run() {
-                                if (str.startsWith("/send")) {
-                                    String[] parts = str.split("\\s");
-                                    messageSender.submitMessage(parts[1], parts[2]);
-                                }
-                                if (str.startsWith("/sendto")) {
-                                    String[] parts = str.split("\\s");
-                                    messageSender.submitMessage(parts[2]+"(лично)", parts[3]);
-                                }
-                            }
-                        });
+                        socket.close();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
             }
-        });
 
+
+        });
 
     }
 

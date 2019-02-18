@@ -1,4 +1,4 @@
-package ru.geekbrains.classes.lesson7.server;
+package ru.geekbrains.classes.lesson7_lesson8.server;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -16,6 +16,8 @@ public class ClientHandler {
     private final ChatServer server;
     private final String username;
     private final Socket socket;
+    private static final Pattern SEND_PATTERN = Pattern.compile("^/send (.+) (.+)$");
+    private static final Pattern SENDTO_PATTERN = Pattern.compile("^/sendto (.+) (.+) (.+)$");
 
 
     public ClientHandler(String username, Socket socket, ChatServer server) throws IOException {
@@ -31,19 +33,31 @@ public class ClientHandler {
             public void run() {
                 try {
                     while (!Thread.currentThread().isInterrupted()) {
-                        String msg = inp.readUTF();
-                        System.out.printf("Message from user %s: %s%n", username, msg);
-                        // TODO реализовать прием сообщений от клиента и пересылку адресату через сервер
+                        String message = inp.readUTF();
+
+
+                        if (message.startsWith("/send")) {
+                            System.out.printf("Message from user %s: %s%n", username, message);
+                            server.sendMessage(message);
+
+
+
+                        }
+                        if (message.startsWith("/mail")) {
+                            System.out.println (message);
+                            server.sendMessageTo( message);
+
+
+                        }
+
+
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
                 } finally {
                     System.out.printf("Client %s disconnected%n", username);
-                    try {
-                        socket.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    server.unsubscribeClient(username);
+
                 }
             }
 
@@ -58,4 +72,19 @@ public class ClientHandler {
             e.printStackTrace();
         }
     }
-}
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void sendList(String[] listUsers) throws IOException {
+
+          for (int i = 0; i < listUsers.length; i++){
+              if(i != (listUsers.length - 1)){
+                  out.writeUTF("/list "+listUsers[i]);
+              }else {
+                  out.writeUTF("/finish " + listUsers[i]);
+              }
+          }
+        }
+    }

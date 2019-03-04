@@ -13,6 +13,7 @@ import java.util.regex.Pattern;
 
 public class Network implements Closeable {
     private static final String AUTH_PATTERN = "/auth %s %s";
+    private static final String CHANGEPWD_PATTERN = "/changepwd %s %s";
     private static final Pattern SEND_PATTERN = Pattern.compile("^/send (.+) (.+)$");
     private final Socket socket;
     private final DataOutputStream out;
@@ -60,7 +61,11 @@ public class Network implements Closeable {
                                 messageSender.addUser(userName);
                             }
                             System.out.printf("Message from user %s: %s%n", username, msg);
+                        }else if(msg.startsWith("/pwdsucs")){
+                            messageSender.submitMessage(username,"Password поменен успешно!");
                         }
+
+
                     }
 
                 } catch (IOException e) {
@@ -117,6 +122,22 @@ public class Network implements Closeable {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public void changePassword(String username, String password) {
+        try {
+            out.writeUTF(String.format(CHANGEPWD_PATTERN, username, password));
+            out.flush();
+            String response = in.readUTF();
+            if (response.equals("/pwdsucs")) {
+
+            } else {
+                throw new AuthException("");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }
 

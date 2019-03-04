@@ -36,13 +36,13 @@ public class MainWindow extends JFrame implements MessageSender {
         list = new JList<>(listModel);
         list.setCellRenderer(new MessageCellRenderer());
         JMenuBar mainMenu = new JMenuBar();
-        JButton btnSignIn = new JButton("Sign in");
+        JButton btnChangePwd = new JButton("Change Password");
         JButton btnSignUp = new JButton("Sign up");
         JButton btnSend = new JButton("Chose All");
         JButton btnSelect = new JButton("Chose User");
         setJMenuBar(mainMenu);
         mainMenu.add(btnSignUp);
-        mainMenu.add(btnSignIn);
+        mainMenu.add(btnChangePwd);
         mainMenu.add(btnSend);
         mainMenu.add(btnSelect);
         panel = new JPanel();
@@ -109,6 +109,7 @@ public class MainWindow extends JFrame implements MessageSender {
                 super.windowClosing(e);
             }
         });
+
         btnSelect.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -126,7 +127,17 @@ public class MainWindow extends JFrame implements MessageSender {
         }
         this.network = loginDialog.getNetwork();
         setTitle("Сетевой чат. Пользователь " + this.network.getUsername());
+
+        ChangeDialog changeDialog = new ChangeDialog(this,network);
+        btnChangePwd.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                changeDialog.setVisible(true);
+
+            }
+        });
     }
+
 
     @Override
     public void addUser(String user) {

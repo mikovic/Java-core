@@ -5,6 +5,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.sql.SQLException;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -13,7 +14,19 @@ public class ChatServer {
     private static final Pattern AUTH_PATTERN = Pattern.compile("^/auth (.+) (.+)$");
     private static final Pattern SEND_PATTERN = Pattern.compile("^/send (.+) (.+)$");
     private static final Pattern SENDTO_PATTERN = Pattern.compile("^/mail (.+) (.+) (.+)$");
-    private AuthService authService = new AuthServiceImpl();
+    private static final Pattern CHANGEPWD_PATTERN = Pattern.compile("^/changepwd (.+) (.+)$");
+    private DBHandler dbHandler;
+
+    {
+        try {
+            dbHandler = DBHandler.getInstance();
+            dbHandler.readDB();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private AuthService authService = new AuthServiceImpl(dbHandler);
     private Map<String, ClientHandler> clientHandlerMap = Collections.synchronizedMap(new HashMap<>());
     public static void main(String[] args) {
         ChatServer chatServer = new ChatServer();
@@ -52,6 +65,8 @@ public class ChatServer {
                     }
 
                 } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (SQLException e) {
                     e.printStackTrace();
                 }
             }
@@ -120,6 +135,18 @@ public class ChatServer {
 
     }
 
+    public void changePassword(String message) throws SQLException {
+        String userName = null;
+        String password = null;
+        Matcher matcher = CHANGEPWD_PATTERN.matcher(message);
+        if (matcher.matches()) {
+             userName= matcher.group(1);
+            password = matcher.group(2);
+        }
+        dbHandler.changePassword(userName, password);
+getClientHandlerMap().get(userName).sendMessage("/pwdsucs");
+
+    }
 }
 
 

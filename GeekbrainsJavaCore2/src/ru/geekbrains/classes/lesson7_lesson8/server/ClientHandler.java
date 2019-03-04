@@ -4,6 +4,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.sql.SQLException;
 import java.util.regex.Pattern;
 
 
@@ -47,8 +48,15 @@ public class ClientHandler {
                         server.getListUsers();
                         System.out.println(server.getListUsers());
                         sendList(server.getListUsers());
+                        if (message.startsWith("/changepwd")) {
+                            System.out.println(message);
+                            server.changePassword(message);
+                        }
                     }
+
                 } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (SQLException e) {
                     e.printStackTrace();
                 } finally {
                     System.out.printf("Client %s disconnected%n", username);
@@ -83,6 +91,7 @@ public class ClientHandler {
         }
 
     }
+
 
 
 }

@@ -34,12 +34,12 @@ public class Network implements Closeable {
                 try {
                     while (!Thread.currentThread().isInterrupted()) {
                         String msg = in.readUTF();
-                        if (msg.startsWith("/send")) {
-                            String[] parts = msg.split("\\s");
+                        if (msg.startsWith("/send//")) {
+                            String[] parts = msg.split("//");
                             messageSender.submitMessage(parts[1], parts[2]);
-                        } else if (msg.startsWith("/mail")) {
-                            String[] parts = msg.split("\\s");
-                            messageSender.submitMessage(parts[2] + "(лично)", parts[3]);
+                        } else if (msg.startsWith("/mail//")) {
+                            String[] parts = msg.split("//");
+                            messageSender.submitMessage(parts[1] + "(лично)", parts[2]);
                         } else if (msg.startsWith("/rmvuser")) {
                             String[] parts = msg.split("\\s");
                             messageSender.submitMessage(parts[1], parts[2]);
@@ -63,6 +63,10 @@ public class Network implements Closeable {
                             System.out.printf("Message from user %s: %s%n", username, msg);
                         }else if(msg.startsWith("/pwdsucs")){
                             messageSender.submitMessage(username,"Password поменен успешно!");
+                        } else if(msg.startsWith("/history")){
+                            String[] parts = msg.split("//");
+
+                            messageSender.addHistory(parts[1], parts[2]);
                         }
 
 
@@ -128,16 +132,10 @@ public class Network implements Closeable {
         try {
             out.writeUTF(String.format(CHANGEPWD_PATTERN, username, password));
             out.flush();
-            String response = in.readUTF();
-            if (response.equals("/pwdsucs")) {
 
-            } else {
-                throw new AuthException("");
-            }
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 }
 

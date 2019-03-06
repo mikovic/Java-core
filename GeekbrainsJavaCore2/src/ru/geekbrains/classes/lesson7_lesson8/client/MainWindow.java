@@ -5,7 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
-import java.util.ArrayList;
+
 
 
 public class MainWindow extends JFrame implements MessageSender {
@@ -22,6 +22,7 @@ public class MainWindow extends JFrame implements MessageSender {
     private JButton btnSelect;
     private JLabel jLabel;
     private WindowSelect windowSelect;
+    private WindowHistory windowHistory;
 
 
     public Network network;
@@ -40,11 +41,13 @@ public class MainWindow extends JFrame implements MessageSender {
         JButton btnSignUp = new JButton("Sign up");
         JButton btnSend = new JButton("Chose All");
         JButton btnSelect = new JButton("Chose User");
+        JButton btnHistory = new JButton("History");
         setJMenuBar(mainMenu);
         mainMenu.add(btnSignUp);
         mainMenu.add(btnChangePwd);
         mainMenu.add(btnSend);
         mainMenu.add(btnSelect);
+        mainMenu.add(btnHistory);
         panel = new JPanel();
         panel.setLayout(new BorderLayout());
         panel.add(list, BorderLayout.SOUTH);
@@ -62,12 +65,12 @@ public class MainWindow extends JFrame implements MessageSender {
                     submitMessage(network.getUsername(), text);
                     textField.setText(null);
                     textField.requestFocus();
-                    text = "/send " + network.getUsername() + " " + text;
+                    text = "/send//" + network.getUsername() + "//" + text;
                     network.sendMessage(text);
 
                 } else {
                     String text = textField.getText().trim();
-                    text = "/mail " + jLabel.getText().trim() + " " + network.getUsername() + " " + text;
+                    text = "/mail//" + jLabel.getText().trim() + " " + network.getUsername() + "//" + text;
                     textField.setText(null);
                     network.sendMessage(text);
                     windowSelect.setVisible(false);
@@ -96,6 +99,7 @@ public class MainWindow extends JFrame implements MessageSender {
         panel.add(textField, BorderLayout.CENTER);
         add(panel, BorderLayout.SOUTH);
         windowSelect = new WindowSelect(this);
+        windowHistory =new WindowHistory(this);
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -114,6 +118,16 @@ public class MainWindow extends JFrame implements MessageSender {
             @Override
             public void actionPerformed(ActionEvent e) {
                 windowSelect.setVisible(true);
+
+            }
+        });
+        btnHistory.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String text = "/history "  + network.getUsername();
+                 network.sendMessage(text);
+                 windowHistory.setVisible(true);
+
 
             }
         });
@@ -165,6 +179,12 @@ public class MainWindow extends JFrame implements MessageSender {
         } else {
             return;
         }
+    }
+
+    @Override
+    public void addHistory(String nameTime, String message) {
+        windowHistory.listModel.addElement(nameTime);
+        windowHistory.listModel.addElement(message);
     }
 
     public JLabel getjLabel() {

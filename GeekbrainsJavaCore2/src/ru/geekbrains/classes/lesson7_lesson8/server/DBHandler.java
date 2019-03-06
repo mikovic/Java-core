@@ -1,15 +1,20 @@
 package ru.geekbrains.classes.lesson7_lesson8.server;
 
 import org.sqlite.JDBC;
+import ru.geekbrains.classes.lesson7_lesson8.client.MessageHisory;
 
 import java.io.Closeable;
 import java.io.IOException;
 import java.sql.*;
+import java.util.*;
+import java.util.Date;
 
 public class DBHandler implements AuthService, Closeable {
 
 
     private static DBHandler instance = null;
+    private List<MessageHisory> history = Collections.synchronizedList(new ArrayList<>());
+
 
     public static synchronized DBHandler getInstance() throws SQLException {
         if (instance == null)
@@ -50,7 +55,7 @@ public class DBHandler implements AuthService, Closeable {
 
         } catch (SQLException e) {
             System.out.println("USERS уже существуют в базе");
-        }finally {
+        } finally {
             try {
                 ps.close();
                 conn.close();
@@ -63,7 +68,7 @@ public class DBHandler implements AuthService, Closeable {
 
 
     @Override
-    public boolean authUser(String username, String password)  {
+    public boolean authUser(String username, String password) {
         String name = null;
         String pwd = null;
         try {
@@ -82,7 +87,7 @@ public class DBHandler implements AuthService, Closeable {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             try {
                 ps.close();
                 rs.close();
@@ -99,7 +104,7 @@ public class DBHandler implements AuthService, Closeable {
     }
 
 
-    public void changePassword(String userName, String password)  {
+    public void changePassword(String userName, String password) {
 
         try {
             this.conn = DriverManager.getConnection(url);
@@ -113,7 +118,7 @@ public class DBHandler implements AuthService, Closeable {
 
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             try {
                 ps.close();
                 conn.close();
@@ -122,7 +127,6 @@ public class DBHandler implements AuthService, Closeable {
             }
 
         }
-
 
 
     }
@@ -139,4 +143,65 @@ public class DBHandler implements AuthService, Closeable {
 
 
     }
+
+    public void adddHistory(String username, String date, String message) {
+        try {
+            this.conn = DriverManager.getConnection(url);
+            conn.setAutoCommit(false);
+            ps = conn.prepareStatement("INSERT INTO HISTORY( USER, DATE, MESSAGE) VALUES(?, ?, ?);");
+            ps.setString(1, username);
+            ps.setString(2, date);
+            ps.setString(3, message);
+            ps.addBatch();
+            ps.executeBatch();
+            conn.commit();
+            conn.setAutoCommit(true);
+
+        } catch (SQLException e) {
+            System.out.println("Не удалось добавить в историю");
+        } finally {
+            try {
+                ps.close();
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+    public List<MessageHisory> selectHisory() {
+        String userName;
+        String date;
+        String message;
+
+        try {
+            this.conn = DriverManager.getConnection(url);
+            statmt = conn.createStatement();
+            rs = statmt.executeQuery("SELECT * FROM HISTORY ORDER BY ID DESC LIMIT 50");
+
+            boolean records = false;
+            while (rs.next()) {
+                records = true;
+                rs.getString("ID");
+                userName = rs.getString("USER");
+                date = rs.getString("DATE");
+                message = rs.getString("MESSAGE");
+                this.history.add(new MessageHisory(userName, date, message));
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                ps.close();
+                rs.close();
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return this.history;
+    }
+
 }

@@ -1,10 +1,14 @@
 package ru.geekbrains.classes.lesson7_lesson8.server;
 
+import ru.geekbrains.classes.lesson7_lesson8.client.MessageHisory;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 
@@ -43,11 +47,16 @@ public class ClientHandler {
                             System.out.println(message);
                             server.sendMessageTo(message);
                         }
-                        if (message.startsWith(("/list"))) ;
-                        System.out.println(message);
-                        server.getListUsers();
-                        System.out.println(server.getListUsers());
-                        sendList(server.getListUsers());
+                        if (message.startsWith("/history")) {
+                            System.out.println(message);
+                            server.sendHisory(message);
+                        }
+                        if (message.startsWith(("/list"))) {
+                            System.out.println(message);
+                            server.getListUsers();
+                            System.out.println(server.getListUsers());
+                            sendList(server.getListUsers());
+                        }
                         if (message.startsWith("/changepwd")) {
                             System.out.println(message);
                             server.changePassword(message);
@@ -68,6 +77,7 @@ public class ClientHandler {
         });
         handleThread.start();
     }
+
     public void sendMessage(String msg) {
         try {
             out.writeUTF(msg);
@@ -75,6 +85,7 @@ public class ClientHandler {
             e.printStackTrace();
         }
     }
+
     public String getUsername() {
         return username;
     }
@@ -83,7 +94,8 @@ public class ClientHandler {
         int len = listUsers.length;
         if (len == 1) {
             out.writeUTF("/finish " + listUsers[0]);
-        }else {
+
+        } else {
             for (int i = 0; i < len - 1; i++) {
                 out.writeUTF("/list " + listUsers[i]);
             }
@@ -93,5 +105,11 @@ public class ClientHandler {
     }
 
 
-
+    public void sendHistory(List<MessageHisory> history) throws IOException {
+        for (MessageHisory msg : history) {
+            String str = "/history//" + msg.getUserName() + " " + msg.getDate() +
+                    "//" + msg.getMessage();
+            out.writeUTF(str);
+        }
+    }
 }

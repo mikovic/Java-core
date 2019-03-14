@@ -33,47 +33,43 @@ public class ClientHandler {
         this.out = new DataOutputStream(socket.getOutputStream());
 
 
-        this.handleThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    while (!Thread.currentThread().isInterrupted()) {
-                        String message = inp.readUTF();
-                        if (message.startsWith("/send")) {
-                            System.out.printf("Message from user %s: %s%n", username, message);
-                            server.sendMessage(message);
-                        }
-                        if (message.startsWith("/mail")) {
-                            System.out.println(message);
-                            server.sendMessageTo(message);
-                        }
-                        if (message.startsWith("/history")) {
-                            System.out.println(message);
-                            server.sendHisory(message);
-                        }
-                        if (message.startsWith(("/list"))) {
-                            System.out.println(message);
-                            server.getListUsers();
-                            System.out.println(server.getListUsers());
-                            sendList(server.getListUsers());
-                        }
-                        if (message.startsWith("/changepwd")) {
-                            System.out.println(message);
-                            server.changePassword(message);
-                        }
+        this.handleThread = new Thread(() -> {
+            try {
+                while (!Thread.currentThread().isInterrupted()) {
+                    String message = inp.readUTF();
+                    if (message.startsWith("/send")) {
+                        System.out.printf("Message from user %s: %s%n", username, message);
+                        server.sendMessage(message);
                     }
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                } finally {
-                    System.out.printf("Client %s disconnected%n", username);
-                    server.unsubscribeClient(username);
-
+                    if (message.startsWith("/mail")) {
+                        System.out.println(message);
+                        server.sendMessageTo(message);
+                    }
+                    if (message.startsWith("/history")) {
+                        System.out.println(message);
+                        server.sendHisory(message);
+                    }
+                    if (message.startsWith(("/list"))) {
+                        System.out.println(message);
+                        server.getListUsers();
+                        System.out.println(server.getListUsers());
+                        sendList(server.getListUsers());
+                    }
+                    if (message.startsWith("/changepwd")) {
+                        System.out.println(message);
+                        server.changePassword(message);
+                    }
                 }
-            }
 
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                System.out.printf("Client %s disconnected%n", username);
+                server.unsubscribeClient(username);
+
+            }
         });
         handleThread.start();
     }

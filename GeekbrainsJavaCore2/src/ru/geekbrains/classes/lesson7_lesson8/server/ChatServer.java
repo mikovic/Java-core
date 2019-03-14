@@ -8,6 +8,8 @@ import java.net.Socket;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -31,6 +33,7 @@ public class ChatServer {
 
     private AuthService authService = new AuthServiceImpl(dbHandler);
     private Map<String, ClientHandler> clientHandlerMap = Collections.synchronizedMap(new HashMap<>());
+    ExecutorService executorService = Executors.newCachedThreadPool();
 
     public static void main(String[] args) {
         ChatServer chatServer = new ChatServer();
@@ -90,7 +93,8 @@ public class ChatServer {
         Set<Map.Entry<String, ClientHandler>> set = getClientHandlerMap().entrySet();
         for (Map.Entry<String, ClientHandler> client : set) {
             if (!username.equals(client.getKey())) {
-                client.getValue().sendMessage(message);
+                ClientHandler clientHandler=  client.getValue();
+                clientHandler.sendMessage(message);
 
             }
         }

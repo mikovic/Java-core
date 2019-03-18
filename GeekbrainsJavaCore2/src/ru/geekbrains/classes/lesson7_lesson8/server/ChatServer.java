@@ -176,7 +176,9 @@ public class ChatServer {
 
     }
 
-
+    public ExecutorService getExecutorService() {
+        return executorService;
+    }
 }
 
 

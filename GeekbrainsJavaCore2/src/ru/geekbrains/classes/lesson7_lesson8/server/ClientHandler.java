@@ -15,7 +15,6 @@ import java.util.regex.Pattern;
 public class ClientHandler {
 
     private static final Pattern MESSAGE_PATTERN = Pattern.compile("^/w (.+) (.+)$");
-    private final Thread handleThread;
     private final DataInputStream inp;
     private final DataOutputStream out;
     private final ChatServer server;
@@ -33,7 +32,7 @@ public class ClientHandler {
         this.out = new DataOutputStream(socket.getOutputStream());
 
 
-        this.handleThread = new Thread(() -> {
+        server.getExecutorService().execute(() -> {
             try {
                 while (!Thread.currentThread().isInterrupted()) {
                     String message = inp.readUTF();
@@ -71,7 +70,7 @@ public class ClientHandler {
 
             }
         });
-        handleThread.start();
+        server.getExecutorService().shutdown();
     }
 
     public void sendMessage(String msg) {

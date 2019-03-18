@@ -29,16 +29,19 @@ public class DBHandler implements AuthService {
         // Выполняем подключение к базе данных
         this.conn = DriverManager.getConnection(url);
 
-        conn.setAutoCommit(false);
     }
 
     public void createDB() throws SQLException {
-        statmt = conn.createStatement();
+        statmt = this.conn.createStatement();
         String sql;
-        sql = "CREATE TABLE IF NOT EXISTS users ( ID         INTEGER, NAME       TEXT NOT NULL, PASSWORD VARCHAR(50))";
+        sql = "CREATE TABLE IF NOT EXISTS USERS( ID         INTEGER, NAME       TEXT NOT NULL, PASSWORD VARCHAR(50))";
         statmt.executeUpdate(sql);
-        conn.commit();
+        sql ="CREATE TABLE IF NOT E"
         statmt.close();
+
+    }
+    public void fiillDB() throws SQLException {
+        conn.setAutoCommit(false);
         PreparedStatement ps = conn.prepareStatement("INSERT INTO USERS(ID, NAME, PASSWORD) VALUES(?, ?, ?);");
         ps.setInt(1, 1);
         ps.setString(2, "ivan");
@@ -50,7 +53,7 @@ public class DBHandler implements AuthService {
         ps.addBatch();
         ps.executeBatch();
         conn.commit();
-        conn.close();
+        conn.setAutoCommit(true);
 
     }
 
@@ -71,4 +74,5 @@ public class DBHandler implements AuthService {
         }
         return username.equals(name) && password.equals(pwd);
     }
+    public
 }

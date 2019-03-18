@@ -1,10 +1,13 @@
 package ru.geekbrains.classes.lesson7_lesson8.server;
 
+import org.sqlite.JDBC;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.sql.*;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -13,11 +16,21 @@ public class ChatServer {
     private static final Pattern AUTH_PATTERN = Pattern.compile("^/auth (.+) (.+)$");
     private static final Pattern SEND_PATTERN = Pattern.compile("^/send (.+) (.+)$");
     private static final Pattern SENDTO_PATTERN = Pattern.compile("^/mail (.+) (.+) (.+)$");
-    private AuthService authService = new AuthServiceImpl();
+    private static DBHandler dbHandler;
+    private static AuthService authService;
     private Map<String, ClientHandler> clientHandlerMap = Collections.synchronizedMap(new HashMap<>());
-    public static void main(String[] args) {
+
+    public ChatServer() throws SQLException, ClassNotFoundException {
+    }
+
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+        dbHandler = DBHandler.getInstance();
+        dbHandler.createDB();
+        dbHandler.fiillDB();
+        authService = new AuthServiceImpl(dbHandler);
         ChatServer chatServer = new ChatServer();
         chatServer.start(777);
+
     }
 
     public void start(int port) {
@@ -52,6 +65,8 @@ public class ChatServer {
                     }
 
                 } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (SQLException e) {
                     e.printStackTrace();
                 }
             }

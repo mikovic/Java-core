@@ -13,6 +13,7 @@ import java.util.regex.Pattern;
 
 public class Network implements Closeable {
     private static final String AUTH_PATTERN = "/auth %s %s";
+    private static final String CHANGEPWD_PATTERN = "/changepwd %s %s";
     private static final Pattern SEND_PATTERN = Pattern.compile("^/send (.+) (.+)$");
     private final Socket socket;
     private final DataOutputStream out;
@@ -33,12 +34,12 @@ public class Network implements Closeable {
                 try {
                     while (!Thread.currentThread().isInterrupted()) {
                         String msg = in.readUTF();
-                        if (msg.startsWith("/send")) {
-                            String[] parts = msg.split("\\s");
+                        if (msg.startsWith("/send//")) {
+                            String[] parts = msg.split("//");
                             messageSender.submitMessage(parts[1], parts[2]);
-                        } else if (msg.startsWith("/mail")) {
-                            String[] parts = msg.split("\\s");
-                            messageSender.submitMessage(parts[2] + "(лично)", parts[3]);
+                        } else if (msg.startsWith("/mail//")) {
+                            String[] parts = msg.split("//");
+                            messageSender.submitMessage(parts[1] + "(лично)", parts[2]);
                         } else if (msg.startsWith("/rmvuser")) {
                             String[] parts = msg.split("\\s");
                             messageSender.submitMessage(parts[1], parts[2]);
@@ -60,7 +61,15 @@ public class Network implements Closeable {
                                 messageSender.addUser(userName);
                             }
                             System.out.printf("Message from user %s: %s%n", username, msg);
+                        }else if(msg.startsWith("/pwdsucs")){
+                            messageSender.submitMessage(username,"Password поменен успешно!");
+                        } else if(msg.startsWith("/history")){
+                            String[] parts = msg.split("//");
+
+                            messageSender.addHistory(parts[1], parts[2]);
                         }
+
+
                     }
 
                 } catch (IOException e) {
@@ -115,6 +124,16 @@ public class Network implements Closeable {
         try {
             receiver.join();
         } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void changePassword(String username, String password) {
+        try {
+            out.writeUTF(String.format(CHANGEPWD_PATTERN, username, password));
+            out.flush();
+
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

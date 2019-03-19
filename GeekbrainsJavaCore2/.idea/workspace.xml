@@ -1,29 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="54dddda5-3c3a-47b6-b37c-307ae7eaba61" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/ru/geekbrains/classes/lesson4_Thread_Part_1/WaitNotifyClass.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ru/geekbrains/classes/lesson5_Thread_Part2/Car.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ru/geekbrains/classes/lesson5_Thread_Part2/MainClass.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ru/geekbrains/classes/lesson5_Thread_Part2/Race.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ru/geekbrains/classes/lesson5_Thread_Part2/Road.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ru/geekbrains/classes/lesson5_Thread_Part2/Stage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ru/geekbrains/classes/lesson5_Thread_Part2/Tunnel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ru/geekbrains/classes/lesson7_lesson8/client/ChangeDialog.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ru/geekbrains/classes/lesson7_lesson8/client/MessageHisory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ru/geekbrains/classes/lesson7_lesson8/client/WindowHistory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="54dddda5-3c3a-47b6-b37c-307ae7eaba61" name="Default Changelist" comment="Домашнее задание 2 ветка 7v">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GeekbrainsJavaCore2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/GeekbrainsJavaCore2.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/geekbrains/classes/lesson7_lesson8/client/MainWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/geekbrains/classes/lesson7_lesson8/client/MainWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/geekbrains/classes/lesson7_lesson8/client/MessageSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/geekbrains/classes/lesson7_lesson8/client/MessageSender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/geekbrains/classes/lesson7_lesson8/client/Network.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/geekbrains/classes/lesson7_lesson8/client/Network.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/geekbrains/classes/lesson7_lesson8/server/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/geekbrains/classes/lesson7_lesson8/server/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/geekbrains/classes/lesson7_lesson8/server/AuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/geekbrains/classes/lesson7_lesson8/server/AuthServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/geekbrains/classes/lesson7_lesson8/server/ChatServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/geekbrains/classes/lesson7_lesson8/server/ChatServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/geekbrains/classes/lesson7_lesson8/server/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/geekbrains/classes/lesson7_lesson8/server/ClientHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/geekbrains/classes/lesson7_lesson8/server/DBHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/geekbrains/classes/lesson7_lesson8/server/DBHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/geekbrains/classes/lesson7_lesson8/server/database.db" beforeDir="false" afterPath="$PROJECT_DIR$/src/ru/geekbrains/classes/lesson7_lesson8/server/database.db" afterDir="false" />
     </list>
     <list id="5e819e90-b318-4923-b15d-976e7411dc19" name="7-8 задание выполнено" comment="7-8 задание выполнено">
       <changelist_data name="Konstantin Minakov" email="mikovic@yandex.ru" date="1550489751000" />
@@ -51,7 +30,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ru/geekbrains/classes/lesson7_lesson8/server/ChatServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2635">
+            <state relative-caret-position="2822">
               <caret line="168" selection-start-line="168" selection-end-line="168" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -72,8 +51,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ru/geekbrains/classes/lesson7_lesson8/server/DBHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="32" column="45" selection-start-line="32" selection-start-column="45" selection-end-line="32" selection-end-column="45" />
+            <state relative-caret-position="221">
+              <caret line="22" column="24" lean-forward="true" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -89,7 +68,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ru/geekbrains/classes/lesson7_lesson8/server/ClientHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1666">
+            <state relative-caret-position="1819">
               <caret line="109" selection-start-line="109" selection-end-line="109" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -101,7 +80,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ru/geekbrains/classes/lesson7_lesson8/client/Network.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1139">
+            <state relative-caret-position="1292">
               <caret line="78" selection-start-line="78" selection-end-line="78" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -113,7 +92,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ru/geekbrains/classes/lesson7_lesson8/client/MainWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1785">
+            <state relative-caret-position="1836">
               <caret line="131" selection-start-line="131" selection-end-line="131" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -163,7 +142,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="lesson7v" />
+        <entry key="$PROJECT_DIR$/.." value="master" />
       </map>
     </option>
     <excluded-from-favorite>
@@ -298,7 +277,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552927907595" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1552978896180" />
     <property name="last_opened_file_path" value="$USER_HOME$/Downloads/sqlite-jdbc-3.25.2.jar!/" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
@@ -621,7 +600,7 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
       <window_info id="DB Browser" order="0" show_stripe_button="false" weight="0.32980332" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.19591528" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.19894099" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Designer" order="4" />
@@ -1053,7 +1032,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/geekbrains/classes/lesson7_lesson8/server/ChatServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2635">
+        <state relative-caret-position="2822">
           <caret line="168" selection-start-line="168" selection-end-line="168" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1073,7 +1052,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/geekbrains/classes/lesson7_lesson8/server/ClientHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1666">
+        <state relative-caret-position="1819">
           <caret line="109" selection-start-line="109" selection-end-line="109" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1083,7 +1062,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/geekbrains/classes/lesson7_lesson8/client/Network.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1139">
+        <state relative-caret-position="1292">
           <caret line="78" selection-start-line="78" selection-end-line="78" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1093,7 +1072,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/geekbrains/classes/lesson7_lesson8/client/MainWindow.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1785">
+        <state relative-caret-position="1836">
           <caret line="131" selection-start-line="131" selection-end-line="131" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1125,8 +1104,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/geekbrains/classes/lesson7_lesson8/server/DBHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="32" column="45" selection-start-line="32" selection-start-column="45" selection-end-line="32" selection-end-column="45" />
+        <state relative-caret-position="221">
+          <caret line="22" column="24" lean-forward="true" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

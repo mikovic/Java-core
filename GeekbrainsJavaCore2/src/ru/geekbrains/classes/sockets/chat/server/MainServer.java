@@ -42,7 +42,7 @@ public class MainServer {
                         }
 
                 }).start();
-
+                
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -55,12 +55,12 @@ public class MainServer {
                                     for (Connect connect : connects) {
                                         connect.readMsgFromConsole(msg);
                                     }
-                                }
-                            } catch (IOException e1) {
-                            e1.printStackTrace();
+                                
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
                         }
                     }
-
                 }).start();
 
             }
